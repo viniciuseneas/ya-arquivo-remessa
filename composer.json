@@ -1,0 +1,29 @@
+{
+  "name": "umbrella/remessa",
+  "type": "library",
+  "description": "YaRemessa é uma biblioteca para geração de arquivos de remessa de forma simples em PHP.",
+  "keywords": [],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Victor Felix",
+      "email": "victor.dreed@gmail.com"
+    },
+    {
+      "name": "Ayrton Ricardo da Silva",
+      "email": "ayrtonricardo@hotmail.com"
+    }
+  ],
+  "autoload-dev": {
+    "psr-4": {
+      "Umbrella\\YaRemessa\\Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "require": {
+    "respect/validation": "^1.1",
+    "phpunit/phpunit": "^6.1"
+  }
+}
