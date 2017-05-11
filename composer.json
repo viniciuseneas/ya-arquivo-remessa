@@ -1,7 +1,7 @@
 {
   "name": "ayrtonricardo/remessa",
   "type": "library",
-  "description": "Ya-Remessa é uma biblioteca para geração de arquivos de remessa de forma simples em PHP.",
+  "description": "ya-remessa é uma biblioteca para geração de arquivos de remessa de forma simples em PHP.",
   "keywords": [],
   "license": "MIT",
   "authors": [
