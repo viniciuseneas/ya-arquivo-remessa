@@ -14,6 +14,11 @@
       "email": "ayrtonricardo@hotmail.com"
     }
   ],
+  "autoload": {
+    "psr-4": {
+      "Umbrella\\Ya\\RemessaBoleto\\": "src/"
+    }
+  },
   "autoload-dev": {
     "psr-4": {
       "Umbrella\\YaRemessa\\Tests\\": "tests/"
