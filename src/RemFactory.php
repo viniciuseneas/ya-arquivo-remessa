@@ -5,6 +5,7 @@ namespace Umbrella\Ya\RemessaBoleto;
 use Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\Bradesco\File;
 use Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\Bradesco\Header;
 use Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\Bradesco\Trailler;
+use Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\Bradesco\Transacao;
 
 class RemFactory
 {
@@ -40,10 +41,15 @@ class RemFactory
 
         $sequencialRegistro = 1;
 
+        /**
+         * @var Transacao $transacao
+         */
         foreach ($transacoes as $transacao) {
             $transacao->setSequencialRegistro($sequencialRegistro);
 
             $stringTransacao = $transacao->getIdentificacaoRegistro()
+                . $transacao->getAgenciaDebito()
+                . $transacao->getDigitoAgenciaDebito()
                 . $transacao->getRazaoContaCorrente()
                 . $transacao->getContaCorrente()
                 . $transacao->getDigitoContaCorrente()
@@ -55,11 +61,11 @@ class RemFactory
                 . $transacao->getIdentificacaoTituloBanco()
                 . $transacao->getDigitoAutoConferencia()
                 . $transacao->getDescontoBonificacao()
-                . $transacao->getDescontoBonificacao()
                 . $transacao->getCondicaoEmissao()
                 . $transacao->getEmiteBoletoDebitoAutomatico()
                 . $transacao->getOperacaoBanco()
                 . $transacao->getIndicadorRateioCredito()
+                . $transacao->getAvisoDebitoAutomatico()
                 . str_pad('', 2, ' ', STR_PAD_LEFT)
                 . $transacao->getIdentificacaoOcorrencia()
                 . $transacao->getNumeroDocumento()
@@ -84,8 +90,7 @@ class RemFactory
                 . $transacao->getPrimeiraMensagem()
                 . $transacao->getCep()
                 . $transacao->getSufixoCep()
-                . $transacao->getSacador()
-                . $transacao->getSegundaMensagem()
+                . ($transacao->getSacador() ? : $transacao->getSegundaMensagem())
                 . $transacao->getSequencialRegistro()
                 . "\n";
 

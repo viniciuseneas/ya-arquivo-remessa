@@ -53,7 +53,7 @@ class Transacao
      * Número do Banco
      * @var int
      */
-    protected $codigoBancoDebitado;
+    protected $codigoBancoDebitado = 237;
 
     /**
      * Se = 2 considerar percentual de multa. Se = 0, sem multa.
@@ -278,7 +278,7 @@ class Transacao
      */
     public function setAgenciaDebito($agenciaDebito)
     {
-        $this->agenciaDebito = $agenciaDebito;
+        $this->agenciaDebito = str_pad($agenciaDebito, 5, 0, STR_PAD_LEFT);;
     }
 
     /**
@@ -386,14 +386,6 @@ class Transacao
     }
 
     /**
-     * @param int $codigoBancoDebitado
-     */
-    public function setCodigoBancoDebitado($codigoBancoDebitado)
-    {
-        $this->codigoBancoDebitado = $codigoBancoDebitado;
-    }
-
-    /**
      * @return int
      */
     public function getMulta()
@@ -422,7 +414,7 @@ class Transacao
      */
     public function setPercentualMulta($percentualMulta)
     {
-        $this->percentualMulta = $percentualMulta;
+        $this->percentualMulta = str_pad($percentualMulta, 4, 0, STR_PAD_LEFT);
     }
 
     /**
