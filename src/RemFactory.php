@@ -5,7 +5,6 @@ namespace Umbrella\Ya\RemessaBoleto;
 use Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\Bradesco\File;
 use Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\Bradesco\Header;
 use Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\Bradesco\Trailler;
-use Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\Bradesco\Transacao;
 
 class RemFactory
 {
