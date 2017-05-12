@@ -35,6 +35,6 @@ class Trailler
      */
     public function setSequencialRegistro($sequencialRegistro)
     {
-        $this->sequencialRegistro = $sequencialRegistro;
+        $this->sequencialRegistro = str_pad($sequencialRegistro, 6, 0, STR_PAD_LEFT);;
     }
 }

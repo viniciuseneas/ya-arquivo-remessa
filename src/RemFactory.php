@@ -5,7 +5,6 @@ namespace Umbrella\Ya\RemessaBoleto;
 use Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\Bradesco\File;
 use Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\Bradesco\Header;
 use Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\Bradesco\Trailler;
-use Umbrella\Ya\RemessaBoleto\Type\StringBuilder;
 
 class RemFactory
 {
@@ -24,16 +23,16 @@ class RemFactory
             . $header->getIdentificacaoArquivo()
             . $header->getLiteralRemessa()
             . $header->getCodigoServico()
-            . StringBuilder::espacos($header->getLiteralServico(), 15)
+            . str_pad($header->getLiteralServico(), 15, ' ', STR_PAD_LEFT)
             . $header->getCodigoEmpresa()
             . $header->getRazaoSocial()
             . $header->getNumeroBradesco()
-            . StringBuilder::espacos($header->getNomeBanco(), 15)
+            . str_pad($header->getNomeBanco(), 15, ' ', STR_PAD_LEFT)
             . $header->getDataGeracao()
-            . StringBuilder::espacos(' ', 8)
+            . str_pad('', 8, ' ', STR_PAD_LEFT)
             . $header->getIdentificacaoSistema()
             . $header->getSequencialRemessa()
-            . StringBuilder::espacos(' ', 277)
+            . str_pad('', 277, ' ', STR_PAD_LEFT)
             . $header->getSequencialRegistro()
             . "\n";
 
@@ -57,7 +56,7 @@ class RemFactory
                 . $transacao->getEmiteBoletoDebitoAutomatico()
                 . $transacao->getOperacaoBanco()
                 . $transacao->getIndicadorRateioCredito()
-                . StringBuilder::espacos(' ', 2)
+                . str_pad('', 2, ' ', STR_PAD_LEFT)
                 . $transacao->getIdentificacaoOcorrencia()
                 . $transacao->getNumeroDocumento()
                 . $transacao->getDataVencimentoTitulo()
@@ -92,8 +91,8 @@ class RemFactory
         $trailler = new Trailler();
 
         $stringTrailler = $trailler->getIdentificacaoRegistro()
-            . StringBuilder::espacos(' ', 393)
-            . StringBuilder::zeros(1, 6);
+            . str_pad('', 393, ' ', STR_PAD_LEFT)
+            . $trailler->getSequencialRegistro();
 
         fwrite($file, $stringTrailler);
 
