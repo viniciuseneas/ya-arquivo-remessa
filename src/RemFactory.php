@@ -38,7 +38,11 @@ class RemFactory
 
         fwrite($file, $stringHeader);
 
+        $sequencialRegistro = 1;
+
         foreach ($transacoes as $transacao) {
+            $transacao->setSequencialRegistro($sequencialRegistro);
+
             $stringTransacao = $transacao->getIdentificacaoRegistro()
                 . $transacao->getRazaoContaCorrente()
                 . $transacao->getContaCorrente()
@@ -85,10 +89,12 @@ class RemFactory
                 . $transacao->getSequencialRegistro()
                 . "\n";
 
+            $sequencialRegistro++;
             fwrite($file, $stringTransacao);
         }
 
         $trailler = new Trailler();
+        $trailler->setSequencialRegistro($sequencialRegistro);
 
         $stringTrailler = $trailler->getIdentificacaoRegistro()
             . str_pad('', 393, ' ', STR_PAD_LEFT)
