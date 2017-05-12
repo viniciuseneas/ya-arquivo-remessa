@@ -41,9 +41,6 @@ class RemFactory
 
         $sequencialRegistro = 1;
 
-        /**
-         * @var Transacao $transacao
-         */
         foreach ($transacoes as $transacao) {
             $transacao->setSequencialRegistro($sequencialRegistro);
 
