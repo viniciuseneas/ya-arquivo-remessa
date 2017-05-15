@@ -123,7 +123,7 @@ class Header
      */
     public function setCodigoEmpresa($codigoEmpresa)
     {
-        $this->codigoEmpresa = str_pad($codigoEmpresa, 20, 0, STR_PAD_RIGHT);
+        $this->codigoEmpresa = str_pad($codigoEmpresa, 20, 0, STR_PAD_LEFT);
     }
 
     /**
@@ -139,7 +139,7 @@ class Header
      */
     public function setRazaoSocial($razaoSocial)
     {
-        $this->razaoSocial = str_pad($razaoSocial, 30, ' ', STR_PAD_RIGHT);
+        $this->razaoSocial = str_pad(mb_strtoupper($razaoSocial), 30, ' ', STR_PAD_RIGHT);
     }
 
     /**
@@ -195,7 +195,7 @@ class Header
      */
     public function setSequencialRemessa($sequencialRemessa)
     {
-        $this->sequencialRemessa = str_pad($sequencialRemessa, 7, 0, STR_PAD_RIGHT);
+        $this->sequencialRemessa = str_pad($sequencialRemessa, 7, 0, STR_PAD_LEFT);
     }
 
     /**
@@ -211,6 +211,6 @@ class Header
      */
     public function setSequencialRegistro($sequencialRegistro)
     {
-        $this->sequencialRegistro = str_pad($sequencialRegistro, 6, 0, STR_PAD_RIGHT);
+        $this->sequencialRegistro = str_pad($sequencialRegistro, 6, 0, STR_PAD_LEFT);
     }
 }

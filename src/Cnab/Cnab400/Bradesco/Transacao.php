@@ -278,7 +278,7 @@ class Transacao
      */
     public function setAgenciaDebito($agenciaDebito)
     {
-        $this->agenciaDebito = str_pad($agenciaDebito, 5, 0, STR_PAD_RIGHT);
+        $this->agenciaDebito = str_pad($agenciaDebito, 5, 0, STR_PAD_LEFT);
     }
 
     /**
@@ -310,7 +310,7 @@ class Transacao
      */
     public function setRazaoContaCorrente($razaoContaCorrente)
     {
-        $this->razaoContaCorrente = str_pad($razaoContaCorrente, 5, 0, STR_PAD_RIGHT);
+        $this->razaoContaCorrente = str_pad($razaoContaCorrente, 5, 0, STR_PAD_LEFT);
     }
 
     /**
@@ -326,7 +326,7 @@ class Transacao
      */
     public function setContaCorrente($contaCorrente)
     {
-        $this->contaCorrente = str_pad($contaCorrente, 7, 0, STR_PAD_RIGHT);
+        $this->contaCorrente = str_pad($contaCorrente, 7, 0, STR_PAD_LEFT);
     }
 
     /**
@@ -374,7 +374,7 @@ class Transacao
      */
     public function setNumeroControleParticipante($numeroControleParticipante)
     {
-        $this->numeroControleParticipante = str_pad($numeroControleParticipante, 25, ' ', STR_PAD_RIGHT);
+        $this->numeroControleParticipante = str_pad(mb_strtoupper($numeroControleParticipante), 25, ' ', STR_PAD_RIGHT);
     }
 
     /**
@@ -414,7 +414,7 @@ class Transacao
      */
     public function setPercentualMulta($percentualMulta)
     {
-        $this->percentualMulta = str_pad($percentualMulta, 4, 0, STR_PAD_RIGHT);
+        $this->percentualMulta = str_pad($percentualMulta, 4, 0, STR_PAD_LEFT);
     }
 
     /**
@@ -430,7 +430,7 @@ class Transacao
      */
     public function setIdentificacaoTituloBanco($identificacaoTituloBanco)
     {
-        $this->identificacaoTituloBanco = str_pad($identificacaoTituloBanco, 11, 0, STR_PAD_RIGHT);
+        $this->identificacaoTituloBanco = str_pad($identificacaoTituloBanco, 11, 0, STR_PAD_LEFT);
     }
 
     /**
@@ -446,7 +446,7 @@ class Transacao
      */
     public function setDigitoAutoConferencia($digitoAutoConferencia)
     {
-        $this->digitoAutoConferencia = $digitoAutoConferencia;
+        $this->digitoAutoConferencia = mb_strtoupper($digitoAutoConferencia);
     }
 
     /**
@@ -462,7 +462,7 @@ class Transacao
      */
     public function setDescontoBonificacao($descontoBonificacao)
     {
-        $this->descontoBonificacao = str_pad($descontoBonificacao, 10, 0, STR_PAD_RIGHT);
+        $this->descontoBonificacao = str_pad($descontoBonificacao, 10, 0, STR_PAD_LEFT);
     }
 
     /**
@@ -494,7 +494,7 @@ class Transacao
      */
     public function setEmiteBoletoDebitoAutomatico($emiteBoletoDebitoAutomatico)
     {
-        $this->emiteBoletoDebitoAutomatico = $emiteBoletoDebitoAutomatico;
+        $this->emiteBoletoDebitoAutomatico = mb_strtoupper($emiteBoletoDebitoAutomatico);
     }
 
     /**
@@ -502,7 +502,7 @@ class Transacao
      */
     public function getOperacaoBanco()
     {
-        return str_pad('', 10, ' ', STR_PAD_RIGHT);
+        return str_pad('', 10, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -526,7 +526,7 @@ class Transacao
      */
     public function setIndicadorRateioCredito($indicadorRateioCredito)
     {
-        $this->indicadorRateioCredito = $indicadorRateioCredito;
+        $this->indicadorRateioCredito = mb_strtoupper($indicadorRateioCredito);
     }
 
     /**
@@ -574,7 +574,7 @@ class Transacao
      */
     public function setNumeroDocumento($numeroDocumento)
     {
-        $this->numeroDocumento = str_pad($numeroDocumento, 10, ' ', STR_PAD_RIGHT);
+        $this->numeroDocumento = str_pad(mb_strtoupper($numeroDocumento), 10, ' ', STR_PAD_RIGHT);
     }
 
     /**
@@ -606,7 +606,7 @@ class Transacao
      */
     public function setValorTitulo($valorTitulo)
     {
-        $this->valorTitulo = str_pad($valorTitulo, 13, 0, STR_PAD_RIGHT);
+        $this->valorTitulo = str_pad($valorTitulo, 13, 0, STR_PAD_LEFT);
     }
 
     /**
@@ -710,7 +710,7 @@ class Transacao
      */
     public function setValorPorDiaATrasado($valorPorDiaATrasado)
     {
-        $this->valorPorDiaATrasado = str_pad($valorPorDiaATrasado, 13, 0, STR_PAD_RIGHT);
+        $this->valorPorDiaATrasado = str_pad($valorPorDiaATrasado, 13, 0, STR_PAD_LEFT);
     }
 
     /**
@@ -742,7 +742,7 @@ class Transacao
      */
     public function setValorDesconto($valorDesconto)
     {
-        $this->valorDesconto = str_pad($valorDesconto, 13, 0, STR_PAD_RIGHT);
+        $this->valorDesconto = str_pad($valorDesconto, 13, 0, STR_PAD_LEFT);
     }
 
     /**
@@ -758,7 +758,7 @@ class Transacao
      */
     public function setValorIof($valorIof)
     {
-        $this->valorIof = str_pad($valorIof, 13, 0, STR_PAD_RIGHT);
+        $this->valorIof = str_pad($valorIof, 13, 0, STR_PAD_LEFT);
     }
 
     /**
@@ -774,7 +774,7 @@ class Transacao
      */
     public function setValorAbatimento($valorAbatimento)
     {
-        $this->valorAbatimento = str_pad($valorAbatimento, 13, 0, STR_PAD_RIGHT);
+        $this->valorAbatimento = str_pad($valorAbatimento, 13, 0, STR_PAD_LEFT);
     }
 
     /**
@@ -806,7 +806,7 @@ class Transacao
      */
     public function setNumeroInscricaoPagador($numeroInscricaoPagador)
     {
-        $this->numeroInscricaoPagador = str_pad($numeroInscricaoPagador, 14, 0, STR_PAD_RIGHT);
+        $this->numeroInscricaoPagador = str_pad($numeroInscricaoPagador, 14, 0, STR_PAD_LEFT);
     }
 
     /**
@@ -822,7 +822,7 @@ class Transacao
      */
     public function setNomePagador($nomePagador)
     {
-        $this->nomePagador = str_pad($nomePagador, 40, ' ', STR_PAD_RIGHT);
+        $this->nomePagador = str_pad(mb_strtoupper($nomePagador), 40, ' ', STR_PAD_RIGHT);
     }
 
     /**
@@ -838,7 +838,7 @@ class Transacao
      */
     public function setEnderecoPagador($enderecoPagador)
     {
-        $this->enderecoPagador = str_pad($enderecoPagador, 40, ' ', STR_PAD_RIGHT);
+        $this->enderecoPagador = str_pad(mb_strtoupper($enderecoPagador), 40, ' ', STR_PAD_RIGHT);
     }
 
     /**
@@ -854,7 +854,7 @@ class Transacao
      */
     public function setPrimeiraMensagem($primeiraMensagem)
     {
-        $this->primeiraMensagem = str_pad($primeiraMensagem, 12, ' ', STR_PAD_RIGHT);
+        $this->primeiraMensagem = str_pad(mb_strtoupper($primeiraMensagem), 12, ' ', STR_PAD_RIGHT);
     }
 
     /**
@@ -902,7 +902,7 @@ class Transacao
      */
     public function setSacador($sacador)
     {
-        $this->sacador = str_pad($sacador, 60, ' ', STR_PAD_RIGHT);
+        $this->sacador = str_pad(mb_strtoupper($sacador), 60, ' ', STR_PAD_RIGHT);
     }
 
     /**
@@ -918,7 +918,7 @@ class Transacao
      */
     public function setSegundaMensagem($segundaMensagem)
     {
-        $this->segundaMensagem = str_pad($segundaMensagem, 60, ' ', STR_PAD_RIGHT);
+        $this->segundaMensagem = str_pad(mb_strtoupper($segundaMensagem), 60, ' ', STR_PAD_RIGHT);
     }
 
     /**
@@ -934,6 +934,6 @@ class Transacao
      */
     public function setSequencialRegistro($sequencialRegistro)
     {
-        $this->sequencialRegistro = str_pad($sequencialRegistro, 6, 0, STR_PAD_RIGHT);
+        $this->sequencialRegistro = str_pad($sequencialRegistro, 6, 0, STR_PAD_LEFT);
     }
 }
