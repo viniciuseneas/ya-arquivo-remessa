@@ -23,16 +23,16 @@ class RemFactory
             . $header->getIdentificacaoArquivo()
             . $header->getLiteralRemessa()
             . $header->getCodigoServico()
-            . str_pad($header->getLiteralServico(), 15, ' ', STR_PAD_LEFT)
+            . str_pad($header->getLiteralServico(), 15, ' ', STR_PAD_RIGHT)
             . $header->getCodigoEmpresa()
             . $header->getRazaoSocial()
             . $header->getNumeroBradesco()
-            . str_pad($header->getNomeBanco(), 15, ' ', STR_PAD_LEFT)
+            . str_pad($header->getNomeBanco(), 15, ' ', STR_PAD_RIGHT)
             . $header->getDataGeracao()
-            . str_pad('', 8, ' ', STR_PAD_LEFT)
+            . str_pad('', 8, ' ', STR_PAD_RIGHT)
             . $header->getIdentificacaoSistema()
             . $header->getSequencialRemessa()
-            . str_pad('', 277, ' ', STR_PAD_LEFT)
+            . str_pad('', 277, ' ', STR_PAD_RIGHT)
             . $header->getSequencialRegistro()
             . "\n";
 
@@ -62,7 +62,7 @@ class RemFactory
                 . $transacao->getOperacaoBanco()
                 . $transacao->getIndicadorRateioCredito()
                 . $transacao->getAvisoDebitoAutomatico()
-                . str_pad('', 2, ' ', STR_PAD_LEFT)
+                . str_pad('', 2, ' ', STR_PAD_RIGHT)
                 . $transacao->getIdentificacaoOcorrencia()
                 . $transacao->getNumeroDocumento()
                 . $transacao->getDataVencimentoTitulo()
@@ -98,7 +98,7 @@ class RemFactory
         $trailler->setSequencialRegistro($sequencialRegistro);
 
         $stringTrailler = $trailler->getIdentificacaoRegistro()
-            . str_pad('', 393, ' ', STR_PAD_LEFT)
+            . str_pad('', 393, ' ', STR_PAD_RIGHT)
             . $trailler->getSequencialRegistro();
 
         fwrite($file, $stringTrailler);
