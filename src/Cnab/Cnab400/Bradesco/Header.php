@@ -48,7 +48,7 @@ class Header
     /**
      * @var string
      */
-    protected $nomeBanco = 'Bradesco';
+    protected $nomeBanco = 'BRADESCO';
 
     /**
      * @var string
