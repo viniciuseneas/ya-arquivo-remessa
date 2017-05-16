@@ -38,7 +38,7 @@ class RemFactory
 
         fwrite($file, $stringHeader);
 
-        $sequencialRegistro = 1;
+        $sequencialRegistro = 2;
 
         foreach ($transacoes as $transacao) {
             $transacao->setSequencialRegistro($sequencialRegistro);
