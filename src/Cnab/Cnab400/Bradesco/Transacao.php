@@ -386,6 +386,14 @@ class Transacao
     }
 
     /**
+     * @param int $codigoBancoDebitado
+     */
+    public function setCodigoBancoDebitado(int $codigoBancoDebitado)
+    {
+        $this->codigoBancoDebitado = str_pad($codigoBancoDebitado, 3, 0, STR_PAD_LEFT);
+    }
+
+    /**
      * @return int
      */
     public function getMulta()
