@@ -139,7 +139,7 @@ class Header
      */
     public function setRazaoSocial($razaoSocial)
     {
-        $this->razaoSocial = str_pad(mb_strtoupper($razaoSocial), 30, ' ', STR_PAD_RIGHT);
+        $this->razaoSocial = mb_strtoupper(str_pad($razaoSocial, 30, ' ', STR_PAD_RIGHT));
     }
 
     /**
