@@ -358,7 +358,7 @@ class Transacao
      */
     public function setIdentificacaoEmpresaBeneficiaria($identificacaoEmpresaBeneficiaria)
     {
-        $this->identificacaoEmpresaBeneficiaria = str_pad($identificacaoEmpresaBeneficiaria, 17, 0, STR_PAD_RIGHT);
+        $this->identificacaoEmpresaBeneficiaria = str_pad($identificacaoEmpresaBeneficiaria, 17, 0, STR_PAD_LEFT);
     }
 
     /**
