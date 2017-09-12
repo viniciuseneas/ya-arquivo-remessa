@@ -17,7 +17,8 @@ class RemFactory
 
     public function build(Header $header, array $transacoes)
     {
-        $file = fopen($this->savePath . '/' . (new File())->buildName(), 'w');
+        $fileName = (new File())->buildName();
+        $file = fopen($this->savePath . '/' . $fileName, 'w');
 
         $stringHeader = $header->getIdentificacaoRegistro()
             . $header->getIdentificacaoArquivo()
@@ -105,6 +106,6 @@ class RemFactory
 
         fclose($file);
 
-        return $this->savePath;
+        return $this->savePath . '/' . $fileName;
     }
 }
