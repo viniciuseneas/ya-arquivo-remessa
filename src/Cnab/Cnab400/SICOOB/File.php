@@ -2,9 +2,7 @@
 
 namespace Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\SICOOB;
 
-use Umbrella\Ya\RemessaBoleto\Cnab\Generico\FileInterface;
-
-class File implements FileInterface
+class File
 {
     public function buildName()
     {
