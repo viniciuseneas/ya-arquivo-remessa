@@ -33,13 +33,12 @@ class BradescoCnab400Builder extends Builder
      * funcao para geracao do arquivo de remessa do cnab400 do boleto bradesco
      * @return string [caminho completo do arquivo de remessa]
      */
-    public function builder()
+    public function build()
     {
         return $this
             ->transacao()
             ->header()
             ->trailler()
-            ->montarArquivo()
             ;
     }
 
@@ -49,6 +48,9 @@ class BradescoCnab400Builder extends Builder
      */
     protected function transacao()
     {
+        echo "<hr>";
+        var_dump($this->detalhesBoleto);
+        echo "<hr>";
         $transacao = new Transacao();
         // $carteira = str_pad($this->convenioBancario->carteira()->nome, 3, 0, STR_PAD_LEFT);
         // $agencia = str_pad($this->convenioBancario->agencia, 5, 0, STR_PAD_LEFT);
@@ -105,7 +107,7 @@ class BradescoCnab400Builder extends Builder
         // $transacao->setAvisoDebitoAutomatico(2);
         // $transacao->setPrimeiraMensagem(' ');
 
-        return $transacao;
+        return $this;
     }
 
     /**
@@ -120,7 +122,7 @@ class BradescoCnab400Builder extends Builder
         // $header->setDataGeracao((new \DateTime())->format('dmy'));
         // $header->setSequencialRegistro(1);
         // $header->setSequencialRemessa($this->idRemessa);
-        return $header;
+        return $this;
     }
 
     /**
