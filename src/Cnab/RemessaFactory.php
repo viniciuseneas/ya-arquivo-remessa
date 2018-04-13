@@ -37,7 +37,8 @@ class RemessaFactory
             $this
                 ->path($path)
                 ->configure($bancoIdentificador, $dadosArrecadacao)
-                ->montarArquivo()
+                ->build()
+                ->createFile()
             ;
         } catch (\Exception $e) {
             var_dump($e);
@@ -65,7 +66,7 @@ class RemessaFactory
      * define a classe que gera o arquivo
      * @param  int    $bancoIdentificador
      * @param  array  $dadosArrecadacao
-     * @return *****
+     * @return RemessaFactory
      */
     private function configure(int $bancoIdentificador, array $dadosArrecadacao)
     {
@@ -79,17 +80,35 @@ class RemessaFactory
                 $this->cnabBuilder = new SicoobCnab400Builder($dadosArrecadacao);
                 break;
             default:
-                throw new \Exception('Banco não cadastrado');
+                throw new \Exception("Codigo do Banco não suportado: {$bancoIdentificador}");
                 break;
         }
 
         return $this;
     }
 
-    private function montarArquivo()
+    /**
+     * chama a classe para atribuir os dados do arquivo de remessa
+     * @return RemessaFactory
+     */
+    private function build()
+    {
+        $this->cnabBuilder->build();
+
+        var_dump($this->cnabBuilder);
+
+        return $this;
+    }
+
+    /**
+     * [createFile description]
+     * @return RemessaFactory
+     */
+    private function createFile()
     {
         $this->remessaFile = $this->cnabBuilder->montarArquivo($this->path);
-
+        var_dump($this->remessaFile);
+        echo "<hr>";
         return $this;
     }
 }
