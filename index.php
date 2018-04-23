@@ -28,21 +28,83 @@ $fileRemessa = (new RemessaFactory())->create(
     # ARRAY DE DADOS REFERENTE AO ARQUIVO DE REMESSA
     array(
         "dam" => [
-            0 => [
-                "carteira"  => "11111111",
-                "agencia"   => "11111"
+            "dam" => 1201076,
+            "tipoDocumento" => 2,
+            "tipoOrigem" => 2,
+            "taxa" => [
+                "taxa" => 273,
+                "convenioBancario" => [
+                    "convenioBancario" => 229,
+                    "orgao" => 1707,
+                    "carteira" => 23,
+                    "convenio" => 4928031,
+                    "agencia" => 3739,
+                    "digitoAgencia" => 7,
+                    "conta" => 16065,
+                    "digitoConta" => 2,
+                ],
+                "valorFixo" => ""
             ],
-            1 => [
-                "carteira"  => "22222222",
-                "agencia"   => "22222"
-            ]
+            "isPago" => "",
+            "nossoNumero" => "00000000668",
+            "numeroDocumento" => "668",
+            "linhaDigitavel" => "23793739019000000006868001606505874730000020000",
+            "representacaoNumerica" => "",
+            "valor" => "200.00",
+            "desconto" => "0.00",
+            "multa" => "",
+            "juros" => "",
+            "correcaoMonetaria" => "0.00",
+            "dataEmissao" => "2018-02-22 00:00:00",
+            "dataVencimento" => "2018-03-24",
+            "baixa" => "",
         ],
         "pagador" => [
-            "ds_nome" => "teste",
-            "nu_cpf_cnpj" => "12345678900005"
+            "pessoa" => 3723770,
+            "municipio" => 6001,
+            "nome" => "SERGIO HAELTON DE OLIVEIRA GIL",
+            "cpfCnpj" => "59314788768",
+            "identidade" => "038498234",
+            "orgaoEmissor" => "SSP",
+            "ufEmissor" => 100133,
+            "dtEmissao" => "",
+            "dtNascimento" => "1959-01-28",
+            "sexo" => "M",
+            "mae" => "",
+            "pai" => "",
+            "nacionalidade" => 105,
+            "endereco" => "AVENIDA DAS AMERICAS",
+            "numero" => "700",
+            "complemento" => "BLOCO 4",
+            "bairro" => "BARRA DA TIJUCA",
+            "distrito" => "",
+            "cep" => "22640100",
+            "email" => "WALENCAR@ASAP-DOCUMENTOS.COM.BR",
+            "dddTelefone" => "11",
+            "telefone" => "33051172",
+            "dddFax" => "",
+            "fax" => "",
+            "dtCadastro" => "2018-02-22 09:18:48",
+            "tipoLogradouro" => "",
+            "pais" => "",
+            "estadoCivil" => "",
+            "pessoaJunta" => "",
+            "municipioNaturalidade" => "",
+            "ufNaturalidade" => "",
+            "emancipado" => "",
+            "motivoEmancipacao" => "",
+            "caixaPostal" => "",
+            "ddiTelefone" => "",
+            "ddiFax" => "",
+            "nire" => "",
+            "registroCartorio" => "",
+            "anoRegistroCartorio" => "",
+            "cartorio" => "",
+            "nomeComarca" => "",
+            "tipoDocumento" => "",
+            "tipoPessoa" => "",
+            "passaporte" => ""
         ]
     ));
 
-
-echo "<hr>";
-var_dump($fileRemessa);
+exit;
