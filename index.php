@@ -9,8 +9,6 @@ use Umbrella\Ya\RemessaBoleto\Cnab\RemessaFactory;
 use Umbrella\Ya\RemessaBoleto\Enum\BancoEnum;
 
 
-$factory = new RemessaFactory();
-
 echo "<a href='?banco=" . BancoEnum::BRADESCO ."'>Bradesco</a>";
 echo "<br/>";
 echo "<a href='?banco=" . BancoEnum::SICOOB . "'>SICOOB</a>";
@@ -18,13 +16,12 @@ echo "<hr>";
 
 if (!$_GET['banco']) {return;}
 
-
 $codigoBanco = $_GET['banco'];
 
 
-$factory->create(
+$fileRemessa = (new RemessaFactory())->create(
     # PATH DE ONDE O ARQUIVO VAI SER SALVO
-    "/tmp/remessa",
+    "/tmp/",
     # ID BANCO
     // BancoEnum::SICOOB,
     $codigoBanco,
@@ -47,3 +44,5 @@ $factory->create(
     ));
 
 
+echo "<hr>";
+var_dump($fileRemessa);

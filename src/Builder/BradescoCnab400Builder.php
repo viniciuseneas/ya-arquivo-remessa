@@ -48,14 +48,19 @@ class BradescoCnab400Builder extends Builder
      */
     protected function transacao()
     {
-        echo "<hr>";
-        var_dump($this->detalhesBoleto);
-        echo "<hr>";
+        $listaDocumentosArrecadacao = $this->detalhesBoleto['dam'];
+
+        foreach ($listaDocumentosArrecadacao as $detalheArrecadacao) {
+            // $carteira = str_pad($this->convenioBancario->carteira()->nome, 3, 0, STR_PAD_LEFT);
+            // $agencia = str_pad($this->convenioBancario->agencia, 5, 0, STR_PAD_LEFT);
+            // $conta = str_pad($this->convenioBancario->conta, 7, 0, STR_PAD_LEFT);
+            // $idBeneficiaria = "0{$carteira}{$agencia}{$conta}{$this->convenioBancario->digitoConta}";
+
+            $idBeneficiaria = $this->concatenarDados($detalheArrecadacao['carteira'], $detalheArrecadacao['agencia']);
+            var_dump($idBeneficiaria);
+        }
         $transacao = new Transacao();
-        // $carteira = str_pad($this->convenioBancario->carteira()->nome, 3, 0, STR_PAD_LEFT);
-        // $agencia = str_pad($this->convenioBancario->agencia, 5, 0, STR_PAD_LEFT);
-        // $conta = str_pad($this->convenioBancario->conta, 7, 0, STR_PAD_LEFT);
-        // $idBeneficiaria = "0{$carteira}{$agencia}{$conta}{$this->convenioBancario->digitoConta}";
+
 
         // $stringFiltrada = (new \Comum_Filter_IntegerFilter())
         //     ->getIntegerFromString(substr($this->dam->nossoNumero, 2, 12))

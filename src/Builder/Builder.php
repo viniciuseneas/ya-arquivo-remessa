@@ -46,4 +46,30 @@ class Builder
         }
     }
 
+
+
+    protected function concatenarDados()
+    {
+        $args   = func_get_args();
+
+        foreach ($args as $key => $dado) { $output .= "{$dado}"; }
+
+        return isset($output) ? $output : "";
+    }
+
+
+    public function montarArquivo()
+    {
+        return "";
+    }
+
+    public function build()
+    {
+        $eteste = $this->concatenarDados('kopaskdopaskod', '12312312312', 'KKKKKKKKKKKKK');
+
+        var_dump($eteste);
+
+        return $this;
+    }
+
 }

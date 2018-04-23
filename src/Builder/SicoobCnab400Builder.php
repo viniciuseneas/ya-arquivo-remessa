@@ -26,19 +26,12 @@ class SicoobCnab400Builder extends Builder
     public function __construct(array $detalhesDoBoleto)
     {
         parent::__construct(BancoEnum::SICOOB);
-
         $this->detalhesBoleto = $detalhesDoBoleto;
     }
 
-    public function builder()
-    {
-        return $this;
-    }
 
 
-    public function montarArquivo()
-    {
-        return "";
-    }
+
+
 
 }

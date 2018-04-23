@@ -34,7 +34,8 @@ class RemessaFactory
     public function create(string $path, int $bancoIdentificador, array $dadosArrecadacao)
     {
         try {
-            $this
+
+            return $this
                 ->path($path)
                 ->configure($bancoIdentificador, $dadosArrecadacao)
                 ->build()
@@ -47,7 +48,6 @@ class RemessaFactory
             var_dump($typeError);
             exit;
         }
-        print_r("factory: <br/><pre>\n" . print_r($this,1) . "</pre>");
     }
 
     /**
@@ -57,8 +57,10 @@ class RemessaFactory
      */
     private function path(string $path)
     {
-        // echo("\npath defined: <b>{$path}</b><br/>\n");
-        $this->path = $path;
+        if (!is_dir($path) || !is_writable($path)) {
+            throw new \Exception("Local especificado para gravar o arquivo é invalido ou não é permitido gravar o arquivo na pasta {$path}");
+        }
+        $this->path = rtrim($path, "/");
         return $this;
     }
 
@@ -70,7 +72,7 @@ class RemessaFactory
      */
     private function configure(int $bancoIdentificador, array $dadosArrecadacao)
     {
-        echo "<b>[" . BancoEnum::getNomeBanco($bancoIdentificador) ."]</b><br/><br/>";
+        echo "<b>[#" . BancoEnum::getNomeBanco($bancoIdentificador) ."-->Builder(); ]</b><br/><br/>";
 
         switch ($bancoIdentificador) {
             case BancoEnum::BRADESCO:
@@ -94,9 +96,6 @@ class RemessaFactory
     private function build()
     {
         $this->cnabBuilder->build();
-
-        var_dump($this->cnabBuilder);
-
         return $this;
     }
 
@@ -107,8 +106,6 @@ class RemessaFactory
     private function createFile()
     {
         $this->remessaFile = $this->cnabBuilder->montarArquivo($this->path);
-        var_dump($this->remessaFile);
-        echo "<hr>";
         return $this;
     }
 }
