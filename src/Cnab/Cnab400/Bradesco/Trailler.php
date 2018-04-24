@@ -37,4 +37,12 @@ class Trailler
     {
         $this->sequencialRegistro = str_pad($sequencialRegistro, 6, 0, STR_PAD_LEFT);
     }
+
+
+    public function getTraillerToString()
+    {
+        return $this->getIdentificacaoRegistro()
+            . str_pad('', 393, ' ', STR_PAD_RIGHT)
+            . $this->getSequencialRegistro();
+    }
 }
