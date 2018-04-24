@@ -2,6 +2,7 @@
 
 namespace Umbrella\Ya\RemessaBoleto\Builder;
 
+use Locale;
 use Symfony\Component\Yaml\Yaml;
 use Umbrella\Ya\RemessaBoleto\Enum\BancoEnum;
 
@@ -46,7 +47,10 @@ class Builder
         }
     }
 
-
+    public function build()
+    {
+        return $this;
+    }
 
     protected function concatenarDados()
     {
@@ -57,19 +61,23 @@ class Builder
         return isset($output) ? $output : "";
     }
 
-
-    public function montarArquivo()
+    protected function parseInteger($string)
     {
-        return "";
+        $retorno = preg_replace("/[^0-9]/", '', trim($string));
+        return (int) $retorno;
     }
 
-    public function build()
+    protected function removerAcentos($string)
     {
-        $eteste = $this->concatenarDados('kopaskdopaskod', '12312312312', 'KKKKKKKKKKKKK');
-
-        var_dump($eteste);
-
-        return $this;
+        // pega a locale default como backup.
+        $locale = Locale::getDefault();
+        // muda pra locale que trabalha os acentos
+        setlocale(LC_CTYPE, 'pt_BR.utf-8');
+        // retira os acentos.
+        $acentosRemovidos = preg_replace('#[`^~\'´"]#', null, iconv(mb_detect_encoding($string), 'ASCII//TRANSLIT', $string));
+        // retorna a locale para a que era anterior a manipulação da string.
+        setlocale(LC_CTYPE, $locale);
+        return $acentosRemovidos;
     }
 
 }
