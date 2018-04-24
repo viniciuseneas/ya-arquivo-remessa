@@ -47,11 +47,6 @@ class Builder
         }
     }
 
-    public function build()
-    {
-        return $this;
-    }
-
     protected function concatenarDados()
     {
         $args   = func_get_args();
@@ -79,5 +74,12 @@ class Builder
         setlocale(LC_CTYPE, $locale);
         return $acentosRemovidos;
     }
+
+
+    protected function getSeqConvenio($arrConvenio)
+    {
+        foreach($arrConvenio as $key => $value) return $key;
+    }
+
 
 }
