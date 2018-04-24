@@ -36,10 +36,12 @@ class RemessaFactory
         try {
 
             return $this
+                ->validarDadosBoleto($bancoIdentificador, $dadosArrecadacao)
                 ->path($path)
                 ->configure($bancoIdentificador, $dadosArrecadacao)
                 ->build()
                 ->createFile()
+                ->remessaFile
             ;
         } catch (\Exception $e) {
             var_dump($e);
@@ -72,8 +74,7 @@ class RemessaFactory
      */
     private function configure(int $bancoIdentificador, array $dadosArrecadacao)
     {
-        echo "<b>[#" . BancoEnum::getNomeBanco($bancoIdentificador) ."-->Builder(); ]</b><br/><br/>";
-
+        /** @description: define o builder de acordo com o identificador do banco */
         switch ($bancoIdentificador) {
             case BancoEnum::BRADESCO:
                 $this->cnabBuilder = new BradescoCnab400Builder($dadosArrecadacao);
@@ -85,7 +86,6 @@ class RemessaFactory
                 throw new \Exception("Codigo do Banco não suportado: {$bancoIdentificador}");
                 break;
         }
-
         return $this;
     }
 
@@ -95,6 +95,7 @@ class RemessaFactory
      */
     private function build()
     {
+        if (empty($this->cnabBuilder)) throw new \Exception("Builder nao configurado!");
         $this->cnabBuilder->build();
         return $this;
     }
@@ -106,6 +107,15 @@ class RemessaFactory
     private function createFile()
     {
         $this->remessaFile = $this->cnabBuilder->montarArquivo($this->path);
+        return $this;
+    }
+
+    /**
+     * Validar dados do boleto
+     * @return RemessaFactory
+     */
+    private function validarDadosBoleto($identificadorBanco, $dadosArrecadacao)
+    {
         return $this;
     }
 }
