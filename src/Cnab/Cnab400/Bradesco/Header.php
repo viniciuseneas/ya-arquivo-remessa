@@ -213,4 +213,24 @@ class Header
     {
         $this->sequencialRegistro = str_pad($sequencialRegistro, 6, 0, STR_PAD_LEFT);
     }
+
+    public function getHeaderToString()
+    {
+        return $this->getIdentificacaoRegistro()
+            . $this->getIdentificacaoArquivo()
+            . $this->getLiteralRemessa()
+            . $this->getCodigoServico()
+            . str_pad($this->getLiteralServico(), 15, ' ', STR_PAD_RIGHT)
+            . $this->getCodigoEmpresa()
+            . $this->getRazaoSocial()
+            . $this->getNumeroBradesco()
+            . str_pad($this->getNomeBanco(), 15, ' ', STR_PAD_RIGHT)
+            . $this->getDataGeracao()
+            . str_pad('', 8, ' ', STR_PAD_RIGHT)
+            . $this->getIdentificacaoSistema()
+            . $this->getSequencialRemessa()
+            . str_pad('', 277, ' ', STR_PAD_RIGHT)
+            . $this->getSequencialRegistro()
+            . "\n";
+    }
 }
