@@ -2,6 +2,7 @@
 
 namespace Umbrella\Ya\RemessaBoleto\Builder;
 
+use \DateTime;
 use Umbrella\Ya\RemessaBoleto\Enum\BancoEnum;
 use Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\Bradesco\Transacao;
 use Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\Bradesco\Header;
@@ -48,70 +49,73 @@ class BradescoCnab400Builder extends Builder
      */
     protected function transacao()
     {
-        $listaDocumentosArrecadacao = $this->detalhesBoleto['dam'];
+        $seqConvenio            = $this->getSeqConvenio($this->detalhesBoleto['convenios']);
+        $convenioBancario       = $this->detalhesBoleto['convenios'][$seqConvenio];
+        $documentosArrecadacao  = $this->detalhesBoleto['transacoes'][$seqConvenio];
 
-        foreach ($listaDocumentosArrecadacao as $detalheArrecadacao) {
-            // $carteira = str_pad($this->convenioBancario->carteira()->nome, 3, 0, STR_PAD_LEFT);
-            // $agencia = str_pad($this->convenioBancario->agencia, 5, 0, STR_PAD_LEFT);
-            // $conta = str_pad($this->convenioBancario->conta, 7, 0, STR_PAD_LEFT);
-            // $idBeneficiaria = "0{$carteira}{$agencia}{$conta}{$this->convenioBancario->digitoConta}";
+        $arrTransacoes = [];
 
-            $idBeneficiaria = $this->concatenarDados($detalheArrecadacao['carteira'], $detalheArrecadacao['agencia']);
-            var_dump($idBeneficiaria);
+        foreach ($documentosArrecadacao['dam'] as $key => $documento) {
+            $transacao = new Transacao;
+
+            $transacao->setIdentificacaoEmpresaBeneficiaria(
+                $this->concatenarDados(
+                    str_pad($convenioBancario['carteira']['nome'], 3, 0, STR_PAD_LEFT),
+                    str_pad($convenioBancario['agencia'], 5, 0, STR_PAD_LEFT),
+                    str_pad($convenioBancario['conta'], 7, 0, STR_PAD_LEFT),
+                    $convenioBancario['digitoConta']
+                )
+            );
+
+            $transacao->setIdentificacaoTituloBanco($this->parseInteger(substr($documento['nossoNumero'], 2, 12)));
+            $transacao->setDigitoAutoConferencia(mb_substr($documento['nossoNumero'], strlen($documento['nossoNumero']) - 1));
+            $transacao->setNumeroDocumento($documento['numeroDocumento']);
+            $transacao->setValorTitulo(str_replace(['.', ','], '', $documento['valor']));
+            $transacao->setNumeroInscricaoPagador($documento['pessoa']['cpfCnpj']);
+            $transacao->setNomePagador($documento['pessoa']['nome']);
+            $transacao->setEnderecoPagador($this->removerAcentos($documento['pessoa']['endereco']));
+            $transacao->setCep(substr($documento['pessoa']['cep'], 0, 5));
+            $transacao->setSufixoCep(substr($documento['pessoa']['cep'], 5, 3));
+            $transacao->setDataVencimentoTitulo(
+                (new \DateTime($documento['dataVencimento']))->format('dmy')
+            );
+            $transacao->setDataEmissaoTitulo(
+                (new \DateTime($documento['dataEmissao']))->format('dmy')
+            );
+
+            $transacao->setCondicaoEmissao(2);
+            $transacao->setEmiteBoletoDebitoAutomatico('N');
+            $transacao->setOperacaoBanco(str_pad('', 10, ' '));
+            $transacao->setIdentificacaoOcorrencia('01');
+            $transacao->setCodigoBancoDebitado(0);
+            $transacao->setEspecieTitulo('99');
+            $transacao->setPrimeiraInstrucao('00');
+            $transacao->setSegundaInstrucao('00');
+            $transacao->setTipoInscricaoPagador('01');
+            $transacao->setValorPorDiaATrasado('0');
+            $transacao->setDataLimiteDesconto(str_pad('', 6, '0'));
+            $transacao->setValorDesconto('0');
+            $transacao->setValorIof('0');
+            $transacao->setValorAbatimento('0');
+            $transacao->setSegundaMensagem(' ');
+            $transacao->setNumeroControleParticipante('0');
+            $transacao->setMulta(0);
+            $transacao->setPercentualMulta(0);
+            $transacao->setDescontoBonificacao('0');
+            $transacao->setIndicadorRateioCredito(' ');
+            $transacao->setAgenciaDebito('0');
+            $transacao->setDigitoAgenciaDebito('0');
+            $transacao->setRazaoContaCorrente('0');
+            $transacao->setContaCorrente('0');
+            $transacao->setDigitoContaCorrente('0');
+            $transacao->setAvisoDebitoAutomatico(2);
+            $transacao->setPrimeiraMensagem(' ');
+
+            $transacao->setSequencialRegistro(str_pad('1', 6, 0));
+
+            $arrTransacoes[] = $transacao;
         }
-        $transacao = new Transacao();
-
-
-        // $stringFiltrada = (new \Comum_Filter_IntegerFilter())
-        //     ->getIntegerFromString(substr($this->dam->nossoNumero, 2, 12))
-        // ;
-        // $nossoNumeroSemDigito = substr($stringFiltrada, 0, 11);
-
-        // $transacao->setIdentificacaoEmpresaBeneficiaria($idBeneficiaria);
-        // $transacao->setIdentificacaoTituloBanco($nossoNumeroSemDigito);
-        // $transacao->setDigitoAutoConferencia(mb_substr($this->dam->nossoNumero, strlen($this->dam->nossoNumero) - 1));
-        // $transacao->setCondicaoEmissao(2);
-        // $transacao->setEmiteBoletoDebitoAutomatico('N');
-        // $transacao->setOperacaoBanco(str_pad('', 10, ' '));
-        // $transacao->setIdentificacaoOcorrencia('01');
-        // $transacao->setCodigoBancoDebitado(0);
-        // $transacao->setNumeroDocumento($this->dam->numeroDocumento);
-        // $transacao->setDataVencimentoTitulo(
-        //     (new \DateTime($this->dam->dataVencimento))->format('dmy')
-        // );
-        // $transacao->setValorTitulo(str_replace(['.', ','], '', $this->dam->valor));
-        // $transacao->setEspecieTitulo('99');
-        // $transacao->setDataEmissaoTitulo((new \DateTime($this->dam->dataEmissao))->format('dmy'));
-        // $transacao->setPrimeiraInstrucao('00');
-        // $transacao->setSegundaInstrucao('00');
-        // $transacao->setTipoInscricaoPagador('01');
-        // $transacao->setNumeroInscricaoPagador($this->pagador->cpfCnpj);
-        // $transacao->setNomePagador($this->pagador->nome);
-        // $enderecoSemAcento = (new \Comum_Filter_StringFilter())->removeAcentos($this->pagador->endereco);
-        // $transacao->setEnderecoPagador($enderecoSemAcento);
-        // $transacao->setCep(substr($this->pagador->cep, 0, 5));
-        // $transacao->setSufixoCep(substr($this->pagador->cep, 5, 3));
-        // $transacao->setSequencialRegistro(str_pad('1', 6, 0));
-
-        // $transacao->setValorPorDiaATrasado('0');
-        // $transacao->setDataLimiteDesconto(str_pad('', 6, '0'));
-        // $transacao->setValorDesconto('0');
-        // $transacao->setValorIof('0');
-        // $transacao->setValorAbatimento('0');
-        // $transacao->setSegundaMensagem(' ');
-        // $transacao->setNumeroControleParticipante('0');
-        // $transacao->setMulta(0);
-        // $transacao->setPercentualMulta(0);
-        // $transacao->setDescontoBonificacao('0');
-        // $transacao->setIndicadorRateioCredito(' ');
-        // $transacao->setAgenciaDebito('0');
-        // $transacao->setDigitoAgenciaDebito('0');
-        // $transacao->setRazaoContaCorrente('0');
-        // $transacao->setContaCorrente('0');
-        // $transacao->setDigitoContaCorrente('0');
-        // $transacao->setAvisoDebitoAutomatico(2);
-        // $transacao->setPrimeiraMensagem(' ');
-
+        $this->transacoes = $arrTransacoes;
         return $this;
     }
 
@@ -121,12 +125,16 @@ class BradescoCnab400Builder extends Builder
      */
     protected function header()
     {
+        $seqConvenio = $this->getSeqConvenio($this->detalhesBoleto['convenios']);
+
         $header = new Header();
-        // $header->setRazaoSocial(mb_strtoupper(mb_substr($this->convenioBancario->orgao()->descricao, 0, 30)));
-        // $header->setCodigoEmpresa($this->convenioBancario->convenio);
-        // $header->setDataGeracao((new \DateTime())->format('dmy'));
-        // $header->setSequencialRegistro(1);
-        // $header->setSequencialRemessa($this->idRemessa);
+        $header->setRazaoSocial(mb_strtoupper(mb_substr($this->detalhesBoleto['convenios'][$seqConvenio]['orgao']['descricao'], 0, 30)));
+        $header->setCodigoEmpresa($this->detalhesBoleto['convenios'][$seqConvenio]['convenio']);
+        $header->setDataGeracao((new \DateTime())->format('dmy'));
+        $header->setSequencialRegistro(1);
+        $header->setSequencialRemessa($this->detalhesBoleto['totalRemessas']);
+
+        $this->header = $header;
         return $this;
     }
 
@@ -137,7 +145,7 @@ class BradescoCnab400Builder extends Builder
     protected function trailler()
     {
         $trailler = new Trailler();
-        $trailler->setSequencialRegistro($sequencialRegistro);
+        $trailler->setSequencialRegistro(1);
 
         return $trailler;
     }
@@ -153,92 +161,39 @@ class BradescoCnab400Builder extends Builder
             throw new \Exception("Não foi possivel abrir o arquivo para criar a remessa {$fullpath}");
         }
 
-        // $stringHeader = $header->getIdentificacaoRegistro()
-        //     . $header->getIdentificacaoArquivo()
-        //     . $header->getLiteralRemessa()
-        //     . $header->getCodigoServico()
-        //     . str_pad($header->getLiteralServico(), 15, ' ', STR_PAD_RIGHT)
-        //     . $header->getCodigoEmpresa()
-        //     . $header->getRazaoSocial()
-        //     . $header->getNumeroBradesco()
-        //     . str_pad($header->getNomeBanco(), 15, ' ', STR_PAD_RIGHT)
-        //     . $header->getDataGeracao()
-        //     . str_pad('', 8, ' ', STR_PAD_RIGHT)
-        //     . $header->getIdentificacaoSistema()
-        //     . $header->getSequencialRemessa()
-        //     . str_pad('', 277, ' ', STR_PAD_RIGHT)
-        //     . $header->getSequencialRegistro()
-        //     . "\n";
+        $header     = $this->header;
+        $transacoes = $this->transacoes;
 
-        // fwrite($file, $stringHeader);
+        $stringHeader = $header->getHeaderToString();
+
+        fwrite($file, $stringHeader);
 
         $sequencialRegistro = 2;
 
-        // $transacao->setSequencialRegistro($sequencialRegistro);
+        foreach ($transacoes as $transacao) {
+            $transacao->setSequencialRegistro($sequencialRegistro);
 
-        // $stringTransacao = $transacao->getIdentificacaoRegistro()
-        //     . $transacao->getAgenciaDebito()
-        //     . $transacao->getDigitoAgenciaDebito()
-        //     . $transacao->getRazaoContaCorrente()
-        //     . $transacao->getContaCorrente()
-        //     . $transacao->getDigitoContaCorrente()
-        //     . $transacao->getIdentificacaoEmpresaBeneficiaria()
-        //     . $transacao->getNumeroControleParticipante()
-        //     . $transacao->getCodigoBancoDebitado()
-        //     . $transacao->getMulta()
-        //     . $transacao->getPercentualMulta()
-        //     . $transacao->getIdentificacaoTituloBanco()
-        //     . $transacao->getDigitoAutoConferencia()
-        //     . $transacao->getDescontoBonificacao()
-        //     . $transacao->getCondicaoEmissao()
-        //     . $transacao->getEmiteBoletoDebitoAutomatico()
-        //     . $transacao->getOperacaoBanco()
-        //     . $transacao->getIndicadorRateioCredito()
-        //     . $transacao->getAvisoDebitoAutomatico()
-        //     . str_pad('', 2, ' ', STR_PAD_RIGHT)
-        //     . $transacao->getIdentificacaoOcorrencia()
-        //     . $transacao->getNumeroDocumento()
-        //     . $transacao->getDataVencimentoTitulo()
-        //     . $transacao->getValorTitulo()
-        //     . $transacao->getBancoCobrador()
-        //     . $transacao->getAgenciaDepositaria()
-        //     . $transacao->getEspecieTitulo()
-        //     . $transacao->getIdentificacao()
-        //     . $transacao->getDataEmissaoTitulo()
-        //     . $transacao->getPrimeiraInstrucao()
-        //     . $transacao->getSegundaInstrucao()
-        //     . $transacao->getValorPorDiaATrasado()
-        //     . $transacao->getDataLimiteDesconto()
-        //     . $transacao->getValorDesconto()
-        //     . $transacao->getValorIof()
-        //     . $transacao->getValorAbatimento()
-        //     . $transacao->getTipoInscricaoPagador()
-        //     . $transacao->getNumeroInscricaoPagador()
-        //     . $transacao->getNomePagador()
-        //     . $transacao->getEnderecoPagador()
-        //     . $transacao->getPrimeiraMensagem()
-        //     . $transacao->getCep()
-        //     . $transacao->getSufixoCep()
-        //     . ($transacao->getSacador() ? : $transacao->getSegundaMensagem())
-        //     . $transacao->getSequencialRegistro()
-        //     . "\n";
+            $stringTransacao = $transacao->getTransacaoToString();
 
-        $sequencialRegistro++;
-        // fwrite($file, $stringTransacao);
-
+            $sequencialRegistro++;
+            fwrite($file, $stringTransacao);
+        }
 
         $trailler = new Trailler();
         $trailler->setSequencialRegistro($sequencialRegistro);
+        $stringTrailler = $trailler->getTraillerToString();
 
-        // $stringTrailler = $trailler->getIdentificacaoRegistro()
-        //     . str_pad('', 393, ' ', STR_PAD_RIGHT)
-        //     . $trailler->getSequencialRegistro();
-
-        // fwrite($file, $stringTrailler);
-
+        fwrite($file, $stringTrailler);
         fclose($file);
 
         return $fullpath;
+    }
+
+
+
+    protected function getSeqConvenio($arrConvenio)
+    {
+        foreach($arrConvenio as $key => $value) return $key;
     }
 
 }
