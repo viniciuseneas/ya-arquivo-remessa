@@ -10,9 +10,9 @@ class Header
     protected $identificacaoRegistro = 0;
 
     /**
-     * @var int
+     * @var string
      */
-    protected $identificacaoArquivo = 1;
+    protected $tipoOperacao = "1";
 
     /**
      * @var string
@@ -27,38 +27,52 @@ class Header
     /**
      * @var string
      */
-    protected $literalServico = 'COBRANCA';
-
-    /**
-     * Será fornecido pelo Bradesco, quando do Cadastramento.
-     * @var string
-     */
-    protected $codigoEmpresa;
+    protected $literalServico = 'COBRANÇA';
 
     /**
      * @var string
      */
-    protected $razaoSocial;
-
-    /**
-     * @var int
-     */
-    protected $numeroBradesco = 237;
+    protected $complementoRegistro = '';
 
     /**
      * @var string
      */
-    protected $nomeBanco = 'BRADESCO';
+    protected $prefixoCooperativa = "???????????";
+
+    /**
+     * @var string
+     */
+    protected $digitoVerificadorCooperativa = "?/?";
+
+    /**
+     * @var string
+     */
+    protected $codigoCliente = "???/";
+
+    /**
+     * @var string
+     */
+    protected $digitoVerificadorCodigo = "???";
+
+    /**
+     * @var string
+     */
+    protected $convenioLider = '';
+
+    /**
+     * @var string
+     */
+    protected $nomeBeneficiario = "????????";
+
+    /**
+     * @var string
+     */
+    protected $identificacaoBanco = "756BANCOOBCED";
 
     /**
      * @var string
      */
     protected $dataGeracao;
-
-    /**
-     * @var string
-     */
-    protected $identificacaoSistema = 'MX';
 
     /**
      * @var string
@@ -71,7 +85,23 @@ class Header
     protected $sequencialRegistro;
 
     /**
-     * @return int
+     * @return string
+     */
+    public function getPrefixoCooperativa()
+    {
+        return $this->prefixoCooperativa;
+    }
+
+    /**
+     * @param string
+     */
+    public function setPrefixoCooperativa($prefixoCooperativa)
+    {
+        $this->prefixoCooperativa = substr(str_pad($prefixoCooperativa, 4, '0', STR_PAD_LEFT),0,4);
+    }
+
+    /**
+     * @return string
      */
     public function getIdentificacaoRegistro()
     {
@@ -79,11 +109,11 @@ class Header
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getIdentificacaoArquivo()
+    public function getTipoOperacao()
     {
-        return $this->identificacaoArquivo;
+        return $this->tipoOperacao;
     }
 
     /**
@@ -111,106 +141,194 @@ class Header
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getCodigoEmpresa()
+    public function getComplementoRegistro()
     {
-        return $this->codigoEmpresa;
+        return $this->complementoRegistro;
     }
 
     /**
-     * @param mixed $codigoEmpresa
+     * @return string
      */
-    public function setCodigoEmpresa($codigoEmpresa)
+    public function getCodigoCliente()
     {
-        $this->codigoEmpresa = str_pad($codigoEmpresa, 20, 0, STR_PAD_LEFT);
+        return $this->codigoCliente;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getRazaoSocial()
+    public function getDigitoVerificadorCodigo()
     {
-        return $this->razaoSocial;
+        return $this->digitoVerificadorCodigo;
     }
 
     /**
-     * @param mixed $razaoSocial
+     * @return string
      */
-    public function setRazaoSocial($razaoSocial)
+    public function getConvenioLider()
     {
-        $this->razaoSocial = mb_strtoupper(str_pad($razaoSocial, 30, ' ', STR_PAD_RIGHT));
+        return $this->convenioLider;
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getNumeroBradesco()
+    public function getNomeBeneficiario()
     {
-        return $this->numeroBradesco;
+        return $this->nomeBeneficiario;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getNomeBanco()
+    public function getIdentificacaoBanco()
     {
-        return $this->nomeBanco;
+        return $this->identificacaoBanco;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getDataGeracao()
+    public function setIdentificacaoRegistro($identificacaoRegistro)
     {
-        return $this->dataGeracao;
+        $this->identificacaoRegistro = $identificacaoRegistro;
     }
 
     /**
-     * @param mixed $dataGeracao
+     * @return string
      */
+    public function setTipoOperacao($tipoOperacao)
+    {
+        $this->tipoOperacao = $tipoOperacao;
+    }
+
+    /**
+     * @return string
+     */
+    public function setLiteralRemessa($literalRemessa)
+    {
+        $this->literalRemessa = $literalRemessa;
+    }
+
+    /**
+     * @return string
+     */
+    public function setCodigoServico($codigoServico)
+    {
+        $this->codigoServico = $codigoServico;
+    }
+
+    /**
+     * @return string
+     */
+    public function setLiteralServico($literalServico)
+    {
+        $this->literalServico = $literalServico;
+    }
+
+    /**
+     * @return string
+     */
+    public function setComplementoRegistro($complementoRegistro)
+    {
+        $this->complementoRegistro = $complementoRegistro;
+    }
+
+    /**
+     * @return string
+     */
+    public function setCodigoCliente($codigoCliente)
+    {
+        $this->codigoCliente = substr(str_pad($codigoCliente, 8, '0', STR_PAD_LEFT),0,8);
+    }
+
+    /**
+     * @return string
+     */
+    public function setDigitoVerificadorCodigo($digitoVerificadorCodigo)
+    {
+        $this->digitoVerificadorCodigo = substr(str_pad($digitoVerificadorCodigo, 1, '0', STR_PAD_LEFT),0,1);
+    }
+
+    /**
+     * @return string
+     */
+    public function setConvenioLider($convenioLider)
+    {
+        $this->convenioLider = $convenioLider;
+    }
+
+    /**
+     * @return string
+     */
+    public function setNomeBeneficiario($nomeBeneficiario)
+    {
+        $this->nomeBeneficiario = mb_strtoupper(str_pad($nomeBeneficiario, 30, ' ', STR_PAD_RIGHT));;
+    }
+
+    /**
+     * @return string
+     */
+    public function setIdentificacaoBanco($identificacaoBanco)
+    {
+        $this->identificacaoBanco = $identificacaoBanco;
+    }
+
+
     public function setDataGeracao($dataGeracao)
     {
         $this->dataGeracao = $dataGeracao;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIdentificacaoSistema()
+
+    public function getDigitoVerificadorCooperativa()
     {
-        return $this->identificacaoSistema;
+        return $this->digitoVerificadorCooperativa;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getSequencialRemessa()
+    public function setDigitoVerificadorCooperativa($digitoVerificadorCooperativa)
     {
-        return $this->sequencialRemessa;
+        $this->digitoVerificadorCooperativa = substr(str_pad($digitoVerificadorCooperativa, 1, '0', STR_PAD_LEFT),0,1);
     }
 
-    /**
-     * @param mixed $sequencialRemessa
-     */
-    public function setSequencialRemessa($sequencialRemessa)
-    {
-        $this->sequencialRemessa = str_pad($sequencialRemessa, 7, 0, STR_PAD_LEFT);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSequencialRegistro()
-    {
-        return $this->sequencialRegistro;
-    }
-
-    /**
-     * @param mixed $sequencialRegistro
-     */
     public function setSequencialRegistro($sequencialRegistro)
     {
-        $this->sequencialRegistro = str_pad($sequencialRegistro, 6, 0, STR_PAD_LEFT);
+        $this->sequencialRegistro = $sequencialRegistro;
     }
+
+    public function setSequencialRemessa($sequencialRemessa)
+    {
+        $this->sequencialRemessa = $sequencialRemessa;
+    }
+
+    public function getHeaderToString()
+    {
+        $headerString = $this->getIdentificacaoRegistro()                            #1
+            . $this->getTipoOperacao()                                               #1
+            . $this->getLiteralRemessa()                                             #7
+            . $this->getCodigoServico()                                              #2
+            . $this->getLiteralServico()                                             #8
+            . str_pad(substr($this->getComplementoRegistro(),0,7), 7, ' ', STR_PAD_LEFT)         #7
+            . $this->getPrefixoCooperativa()                                         #4
+            . $this->getDigitoVerificadorCooperativa()                               #1
+            . $this->getCodigoCliente()                                              #8
+            . $this->getDigitoVerificadorCodigo()                                    #1
+            . str_pad(substr($this->getConvenioLider(),0,6), 6, 0, STR_PAD_LEFT)                 #6
+            . $this->getNomeBeneficiario()                                           #30
+            . str_pad($this->getIdentificacaoBanco(), 18, ' ', STR_PAD_RIGHT)        #18
+            . $this->dataGeracao                                                     #6
+            . str_pad($this->sequencialRemessa, 7, 0, STR_PAD_LEFT)                  #7
+            . str_pad($this->getComplementoRegistro(), 287, ' ', STR_PAD_RIGHT)      #287
+            . str_pad($this->sequencialRegistro, 6, 0, STR_PAD_LEFT)                 #6
+        ;
+
+        if (mb_strlen($headerString) != 400) {
+            throw new \Exception("Erro ao gerar header da remessa, tamanho da string invalida");
+        }
+
+        return $headerString;
+    }
+
 }
