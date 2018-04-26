@@ -146,8 +146,8 @@ class BradescoCnab400Builder extends Builder
     {
         $trailler = new Trailler();
         $trailler->setSequencialRegistro(1);
-
-        return $trailler;
+        $this->trailler = $trailler;
+        return $this;
     }
 
     public function montarArquivo(string $path)
@@ -163,10 +163,11 @@ class BradescoCnab400Builder extends Builder
 
         $header     = $this->header;
         $transacoes = $this->transacoes;
+        $trailler   = $this->trailler;
 
         $stringHeader = $header->getHeaderToString();
 
-        fwrite($file, $stringHeader);
+        fwrite($file, $stringHeader . "\n");
 
         $sequencialRegistro = 2;
 
@@ -176,10 +177,9 @@ class BradescoCnab400Builder extends Builder
             $stringTransacao = $transacao->getTransacaoToString();
 
             $sequencialRegistro++;
-            fwrite($file, $stringTransacao);
+            fwrite($file, $stringTransacao . "\n");
         }
 
-        $trailler = new Trailler();
         $trailler->setSequencialRegistro($sequencialRegistro);
         $stringTrailler = $trailler->getTraillerToString();
 
@@ -190,10 +190,5 @@ class BradescoCnab400Builder extends Builder
     }
 
 
-
-    protected function getSeqConvenio($arrConvenio)
-    {
-        foreach($arrConvenio as $key => $value) return $key;
-    }
 
 }
