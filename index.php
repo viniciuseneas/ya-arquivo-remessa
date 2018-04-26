@@ -1,6 +1,13 @@
-<?php
+<style>
+.div {
+    padding: 5px;
+    border: 1px solid black;
+    background-color: silver;
+    color: black;
+}
+</style>
 
-namespace Umbrella\Ya;
+<?php
 
 require("vendor/autoload.php");
 
@@ -57,6 +64,7 @@ try {
                         "orgaoSistema" => null,
                         "orgaoUsuarios" => null
                     ],
+                    "cedente" => "1231230",
                     "convenio" => 4928031,
                     "agencia" => 3739,
                     "digitoAgencia" => 7,
@@ -78,23 +86,24 @@ try {
                             "tipoDocumento" => 2,
                             "tipoOrigem" => 2,
                             "taxa" => [
-                                    "taxa" => 273,
-                                    "convenioBancario" => [
-                                            "convenioBancario" => 229,
-                                            "orgao" => 1707,
-                                            "carteira" => 23,
-                                            "convenio" => 4928031,
-                                            "agencia" => 3739,
-                                            "digitoAgencia" => 7,
-                                            "conta" => 16065,
-                                            "digitoConta" => 2
-                                    ],
-                                    "valorFixo" => false,
+                                "taxa" => 273,
+                                "convenioBancario" => [
+                                    "convenioBancario" => 229,
+                                    "cedente" => "0000002",
+                                    "orgao" => 1707,
+                                    "carteira" => 23,
+                                    "convenio" => "492XX31",
+                                    "agencia" => "3XX9",
+                                    "digitoAgencia" => 7,
+                                    "conta" => 16065,
+                                    "digitoConta" => 2
+                                ],
+                                "valorFixo" => false,
                             ],
                             "isPago" => false,
                             "nossoNumero" => "00000000668",
                             "numeroDocumento" => 668,
-                            "linhaDigitavel" => "23793739019000000006868001606505874730000020000",
+                            "linhaDigitavel" => "29993739019000000006868001606505874730000020000",
                             "representacaoNumerica" => null,
                             "valor" => "200.00",
                             "desconto" => "0.00",
@@ -106,10 +115,13 @@ try {
                             "baixa" => false,
                             "pessoa" => [
                                 "pessoa" => 3723770,
-                                "municipio" => 6001,
-                                "nome" => "SERGIO HAELTON DE OLIVEIRA GIL",
-                                "cpfCnpj" => "59314788768",
-                                "identidade" => "038498234",
+                                "municipio" => [
+                                    "nome" => "",
+                                    "uf" => [ "sigla" => "PB" ]
+                                ],
+                                "nome" => "SERG DE OLIVE",
+                                "cpfCnpj" => "59123788768",
+                                "identidade" => "038123234",
                                 "orgaoEmissor" => "SSP",
                                 "ufEmissor" => 100133,
                                 "dtEmissao" => null,
@@ -124,7 +136,7 @@ try {
                                 "bairro" => "BARRA DA TIJUCA",
                                 "distrito" => null,
                                 "cep" => "22640100",
-                                "email" => "WALENCAR@ASAP-DOCUMENTOS.COM.BR",
+                                "email" => "WAASNCAR@ASasdASDS.COM.BR",
                                 "dddTelefone" => "11",
                                 "telefone" => "33051172",
                                 "dddFax" => null,
@@ -168,9 +180,12 @@ try {
     exit;
 }
 
-echo "<hr>{$fileRemessa}<br><pre>";
+echo "{$fileRemessa}<br><hr><pre>";
 
 print_r(file_get_contents($fileRemessa));
 
 exit('<hr>');
 echo "<h1>fim</h1>";
+
+
+?>
