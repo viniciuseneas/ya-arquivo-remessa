@@ -216,7 +216,7 @@ class Header
 
     public function getHeaderToString()
     {
-        return $this->getIdentificacaoRegistro()
+        $headerString = $this->getIdentificacaoRegistro()
             . $this->getIdentificacaoArquivo()
             . $this->getLiteralRemessa()
             . $this->getCodigoServico()
@@ -230,7 +230,12 @@ class Header
             . $this->getIdentificacaoSistema()
             . $this->getSequencialRemessa()
             . str_pad('', 277, ' ', STR_PAD_RIGHT)
-            . $this->getSequencialRegistro()
-            . "\n";
+            . $this->getSequencialRegistro();
+
+        if (mb_strlen($headerString) != 400) {
+            throw new \Exception("Erro ao gerar header da remessa, tamanho da string invalida (length: " . mb_strlen($headerString) . ")");
+        }
+
+        return $headerString;
     }
 }
