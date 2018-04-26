@@ -947,7 +947,7 @@ class Transacao
 
     public function getTransacaoToString()
     {
-        return $this->getIdentificacaoRegistro()
+        $stringTransacao = $this->getIdentificacaoRegistro()
             . $this->getAgenciaDebito()
             . $this->getDigitoAgenciaDebito()
             . $this->getRazaoContaCorrente()
@@ -992,6 +992,12 @@ class Transacao
             . $this->getSufixoCep()
             . ($this->getSacador() ? : $this->getSegundaMensagem())
             . $this->getSequencialRegistro()
-            . "\n";
+        ;
+
+        if (mb_strlen($stringTransacao) != 400) {
+            throw new \Exception("Erro ao gerar transacoes da remessa, tamanho da string invalida (length: " . mb_strlen($stringTransacao) . ")");
+        }
+
+        return $stringTransacao;
     }
 }
