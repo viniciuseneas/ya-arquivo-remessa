@@ -6,6 +6,6 @@ class File
 {
     public function buildName()
     {
-        return 'CB' . date('d') . date('m') . 'A1.REM';
+        return 'CS' . date('d') . date('m') . 'A1.REM';
     }
 }
