@@ -64,7 +64,7 @@ try {
                         "orgaoSistema" => null,
                         "orgaoUsuarios" => null
                     ],
-                    "cedente" => "1231230",
+                    "cedente" => "612312376",
                     "convenio" => 4928031,
                     "agencia" => 3739,
                     "digitoAgencia" => 7,
