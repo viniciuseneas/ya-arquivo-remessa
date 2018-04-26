@@ -6,6 +6,7 @@ namespace Umbrella\Ya\RemessaBoleto\Cnab;
 use Umbrella\Ya\RemessaBoleto\Enum\BancoEnum;
 use Umbrella\Ya\RemessaBoleto\Builder\BradescoCnab400Builder;
 use Umbrella\Ya\RemessaBoleto\Builder\SicoobCnab400Builder;
+use Umbrella\Ya\RemessaBoleto\Validator\Validator;
 
 class RemessaFactory
 {
@@ -116,6 +117,10 @@ class RemessaFactory
      */
     private function validarDadosBoleto($identificadorBanco, $dadosArrecadacao)
     {
+        $validator = new Validator($identificadorBanco);
+
+        $validator->run($dadosArrecadacao);
+
         return $this;
     }
 }
