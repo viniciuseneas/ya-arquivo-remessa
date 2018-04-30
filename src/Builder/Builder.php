@@ -50,6 +50,7 @@ class Builder
     protected function concatenarDados()
     {
         $args   = func_get_args();
+        $output = '';
 
         foreach ($args as $key => $dado) { $output .= "{$dado}"; }
 
