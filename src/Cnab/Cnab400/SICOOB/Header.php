@@ -300,7 +300,7 @@ class Header
 
     public function setSequencialRemessa($sequencialRemessa)
     {
-        $this->sequencialRemessa = $sequencialRemessa;
+        $this->sequencialRemessa = str_pad(substr($sequencialRemessa,0,7), 7, 0, STR_PAD_LEFT);
     }
 
     public function getHeaderToString()
@@ -319,7 +319,7 @@ class Header
             . $this->getNomeBeneficiario()                                           #30
             . str_pad($this->getIdentificacaoBanco(), 18, ' ', STR_PAD_RIGHT)        #18
             . $this->dataGeracao                                                     #6
-            . str_pad($this->sequencialRemessa, 7, 0, STR_PAD_LEFT)                  #7
+            . $this->sequencialRemessa                  #7
             . str_pad($this->getComplementoRegistro(), 287, ' ', STR_PAD_RIGHT)      #287
             . str_pad($this->sequencialRegistro, 6, 0, STR_PAD_LEFT)                 #6
         ;
