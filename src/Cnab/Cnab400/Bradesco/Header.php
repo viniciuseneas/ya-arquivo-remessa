@@ -195,7 +195,7 @@ class Header
      */
     public function setSequencialRemessa($sequencialRemessa)
     {
-        $this->sequencialRemessa = str_pad($sequencialRemessa, 7, 0, STR_PAD_LEFT);
+        $this->sequencialRemessa = str_pad(substr($sequencialRemessa,0,7), 7, 0, STR_PAD_LEFT);
     }
 
     /**
