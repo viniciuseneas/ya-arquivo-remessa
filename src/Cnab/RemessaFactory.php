@@ -97,7 +97,7 @@ class RemessaFactory
     private function build()
     {
         if (empty($this->cnabBuilder)) throw new \Exception("Builder nao configurado!");
-        $this->cnabBuilder->build();
+        $this->cnabBuilder->build($this->path);
         return $this;
     }
 
