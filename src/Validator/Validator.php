@@ -14,10 +14,15 @@ class Validator
     const CONFIG_FILE = "src/config/validator.yml";
 
     /**
-     * [$dataValidator description]
-     * @var [type]
+     * @var array
      */
     private $dataValidator;
+
+
+    /**
+     * @var array
+     */
+    private $emptyFields = [];
 
     /**
      * @param int $bancoIdentificador
