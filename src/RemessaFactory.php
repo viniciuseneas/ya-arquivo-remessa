@@ -1,11 +1,13 @@
 <?php
 
 
-namespace Umbrella\Ya\RemessaBoleto\Cnab;
+namespace Umbrella\Ya\RemessaBoleto;
 
 use Umbrella\Ya\RemessaBoleto\Enum\BancoEnum;
 use Umbrella\Ya\RemessaBoleto\Builder\BradescoCnab400Builder;
 use Umbrella\Ya\RemessaBoleto\Builder\SicoobCnab400Builder;
+use Umbrella\Ya\RemessaBoleto\Builder\BBCnab400Builder;
+use Umbrella\Ya\RemessaBoleto\Builder\CEFCnab400Builder;
 use Umbrella\Ya\RemessaBoleto\Validator\Validator;
 
 class RemessaFactory
@@ -44,6 +46,7 @@ class RemessaFactory
                 ->createFile()
                 ->remessaFile
             ;
+
         } catch (\Exception $e) {
             var_dump($e);
             exit;
@@ -85,8 +88,18 @@ class RemessaFactory
             case BancoEnum::SICOOB:
                 $this->cnabBuilder = new SicoobCnab400Builder($dadosArrecadacao);
                 break;
+            case BancoEnum::CEF:
+                $this->cnabBuilder = new CEFCnab400Builder($dadosArrecadacao);
+                break;
+            case BancoEnum::BANCO_DO_BRASIL:
+                $this->cnabBuilder = new BBCnab400Builder($dadosArrecadacao);
+                break;
             default:
-                throw new \Exception("Codigo do Banco não suportado: {$bancoIdentificador}");
+                throw new \Exception(
+                    "Banco não suportado: "
+                    . (new BancoEnum())->getNomeBanco($bancoIdentificador)
+                    . " ({$bancoIdentificador})"
+                );
                 break;
         }
         return $this;
