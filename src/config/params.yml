@@ -19,3 +19,12 @@ cnab400:
     nome_banco: 'SICOOB'
     identificacao_sistema: 'MX'
 
+  bb:
+    identificacao_registro: '0'
+    identificacao_operacao: '1'
+    literal_operacao: 'REMESSA'
+    tipo_servico: '01'
+    literal_servico: 'COBRANCA'
+    id_banco: '001BANCODOBRASIL'
+    numero_banco: '1'
+    nome_banco: 'BANCO DO BRASIL'
