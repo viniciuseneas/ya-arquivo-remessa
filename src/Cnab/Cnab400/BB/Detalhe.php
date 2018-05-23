@@ -854,7 +854,7 @@ class Detalhe
      */
     public function setSequencialRegistro($sequencialRegistro)
     {
-        $this->sequencialRegistro = str_pad(substr($sequencialRegistro,0,6),6,' ',STR_PAD_LEFT);
+        $this->sequencialRegistro = str_pad(substr($sequencialRegistro,0,6),6,'0',STR_PAD_LEFT);
     }
 
     /**
