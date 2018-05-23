@@ -1,11 +1,11 @@
 <?php
 
-namespace Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\CEF;
+namespace Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\BB;
 
 class File
 {
     public function buildName()
     {
-        return 'CEF-cnab400-' . date('d') . date('m') . 'A1.REM';
+        return 'BB-cnab400-' . date('d') . date('m') . 'A1.REM';
     }
 }
