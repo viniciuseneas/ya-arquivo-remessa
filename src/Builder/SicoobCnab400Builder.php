@@ -47,7 +47,7 @@ class SicoobCnab400Builder extends Builder
 
     /**
      * gerador da trasacao do arquivo de remessa cnab400 bradesco
-     * @return Detalhe
+     * @return $this
      */
     protected function detalhe()
     {
@@ -98,7 +98,7 @@ class SicoobCnab400Builder extends Builder
 
     /**
      * gerador do header do arquivo de remessa do bradesco cnab400
-     * @return Header
+     * @return $this
      */
     protected function header()
     {
