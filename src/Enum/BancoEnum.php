@@ -6,12 +6,15 @@ class BancoEnum
 {
 
     const BANCO_DO_BRASIL   = 1;
-
     const BRADESCO          = 237;
-
     const SICOOB            = 756;
+    const CEF               = 104;
 
-
+    /**
+     * @param $codigoBanco
+     * @return string
+     * @throws \Exception
+     */
     public function getNomeBanco($codigoBanco)
     {
         switch ($codigoBanco) {
@@ -24,7 +27,8 @@ class BancoEnum
             case self::SICOOB:
                 return "SICOOB";
                 break;
-
+            case self::CEF:
+                return 'CAIXA';
             default:
                 throw new \Exception("Banco não suportado");
                 break;
