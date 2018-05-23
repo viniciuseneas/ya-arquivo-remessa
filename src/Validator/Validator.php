@@ -25,12 +25,13 @@ class Validator
     private $emptyFields = [];
 
     /**
+     * @throws \Exception
      * @param int $bancoIdentificador
      */
     public function __construct(int $bancoIdentificador)
     {
         if (!file_exists(self::CONFIG_FILE)) {
-            throw new \Exception('Arquivo de configuração nao localizado: {self::CONFIG_FILE}');
+            throw new \Exception("Arquivo de configuração nao localizado: " . self::CONFIG_FILE);
         }
 
         $this->loadDataValidator($bancoIdentificador);
@@ -38,6 +39,7 @@ class Validator
 
     /**
      * Carrega os dados de acordo com banco passado no parametro.
+     * @throws \Exception
      * @param  int    $bancoIdentificador
      * @return void
      */
@@ -52,14 +54,22 @@ class Validator
                 $this->dataValidator = Yaml::parseFile(self::CONFIG_FILE)['sicoob'];
                 break;
 
+            case BancoEnum::CEF:
+                $this->dataValidator = Yaml::parseFile(self::CONFIG_FILE)['cef'];
+                break;
+
+            case BancoEnum::BANCO_DO_BRASIL:
+                $this->dataValidator = Yaml::parseFile(self::CONFIG_FILE)['bb'];
+                break;
             default:
-                throw new \Exception("Objeto de validação do banco não localizado {self::CONFIG_FILE}");
+                throw new \Exception("Objeto de validação do banco não localizado " . self::CONFIG_FILE);
                 break;
         }
     }
 
     /**
      * compare validator
+     * @throws \Exception
      * @param  array       dados do arquivo de remessa a ser criado
      */
     public function run($data)
@@ -71,25 +81,25 @@ class Validator
         }
     }
 
-
+    /**
+     * @param $dataValidator
+     * @param $data
+     * @param null $emptyFields
+     */
     private function compareArray($dataValidator, $data, $emptyFields = null)
     {
         $emptyFields = $emptyFields ?? [];
-        $primarykeys = array_keys($dataValidator);
-
-        foreach ($primarykeys as $key => $value) {
+        foreach (array_keys($dataValidator) as $value) {
             if (is_array($dataValidator[$value])) {
                 $controller = ($value == "SEQ") ? key($data) : $value;
                 $this->compareArray($dataValidator[$value], $data[$controller], $emptyFields);
                 unset($data[$controller]);
                 continue;
             }
-
             if (!isset($data[$value])) {
                 $this->emptyFields[] = $value;
             }
         }
     }
-
 
 }
