@@ -30,7 +30,7 @@ class RemessaFactory
 
     /**
      * cria o arquivo de remesssa
-     * @return RemessaFactory
+     * @return string
      */
     public function create(string $path, int $bancoIdentificador, array $dadosArrecadacao)
     {
@@ -57,6 +57,7 @@ class RemessaFactory
      * Define o path
      * @param  string $path
      * @return RemessaFactory
+     * @throws \Exception
      */
     private function path(string $path)
     {
@@ -69,6 +70,7 @@ class RemessaFactory
 
     /**
      * define a classe que gera o arquivo
+     * @throws \Exception
      * @param  int    $bancoIdentificador
      * @param  array  $dadosArrecadacao
      * @return RemessaFactory
@@ -92,6 +94,7 @@ class RemessaFactory
 
     /**
      * chama a classe para atribuir os dados do arquivo de remessa
+     * @throws \Exception
      * @return RemessaFactory
      */
     private function build()
