@@ -14,7 +14,9 @@ class Builder
     const CONFIG_FILE = "src/config/params.yml";
 
     /**
+     * Builder constructor.
      * @param int $bancoIdentificador
+     * @throws \Exception
      */
     public function __construct(int $bancoIdentificador)
     {
@@ -26,9 +28,8 @@ class Builder
     }
 
     /**
-     * Carrega os dados de acordo com banco passado no parametro.
-     * @param  int    $bancoIdentificador
-     * @return void
+     * @param int $bancoIdentificador
+     * @throws \Exception
      */
     private function carregarDadosBoletoBanco(int $bancoIdentificador)
     {
@@ -41,12 +42,23 @@ class Builder
                 $this->dadosBoleto = Yaml::parseFile(self::CONFIG_FILE)['cnab400']['sicoob'];
                 break;
 
+            case BancoEnum::BANCO_DO_BRASIL:
+                $this->dadosBoleto = Yaml::parseFile(self::CONFIG_FILE)['cnab400']['bb'];
+                break;
+
+            case BancoEnum::CEF:
+                $this->dadosBoleto = Yaml::parseFile(self::CONFIG_FILE)['cnab400']['cef'];
+                break;
+
             default:
                 throw new \Exception("Dados de boleto do banco não localizado {self::CONFIG_FILE}");
                 break;
         }
     }
 
+    /**
+     * @return string
+     */
     protected function concatenarDados()
     {
         $args   = func_get_args();
@@ -57,12 +69,20 @@ class Builder
         return isset($output) ? $output : "";
     }
 
+    /**
+     * @param $string
+     * @return int
+     */
     protected function parseInteger($string)
     {
         $retorno = preg_replace("/[^0-9]/", '', trim($string));
         return (int) $retorno;
     }
 
+    /**
+     * @param $string
+     * @return null|string|string[]
+     */
     protected function removerAcentos($string)
     {
         // pega a locale default como backup.
@@ -76,7 +96,10 @@ class Builder
         return $acentosRemovidos;
     }
 
-
+    /**
+     * @param $arrConvenio
+     * @return int|string
+     */
     protected function getSeqConvenio($arrConvenio)
     {
         foreach($arrConvenio as $key => $value) return $key;
