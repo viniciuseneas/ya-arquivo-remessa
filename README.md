@@ -13,5 +13,5 @@
 | CEF |
 
 
-![](https://pandao.github.io/editor.md/examples/images/4.jpg)
+![](https://raw.githubusercontent.com/r4faelaugusto/ya-arquivo-remessa/remessa-bancodobrasil/sequenceDiagram.png)
 > Diagrama de sequencia
