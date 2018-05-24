@@ -64,7 +64,9 @@ class Builder
         $args   = func_get_args();
         $output = '';
 
-        foreach ($args as $key => $dado) { $output .= "{$dado}"; }
+        foreach ($args as $dado) {
+            $output .= "{$dado}";
+        }
 
         return isset($output) ? $output : "";
     }
@@ -90,7 +92,11 @@ class Builder
         // muda pra locale que trabalha os acentos
         setlocale(LC_CTYPE, 'pt_BR.utf-8');
         // retira os acentos.
-        $acentosRemovidos = preg_replace('#[`^~\'´"]#', null, iconv(mb_detect_encoding($string), 'ASCII//TRANSLIT', $string));
+        $acentosRemovidos = preg_replace(
+            '#[`^~\'´"]#',
+            null,
+            iconv(mb_detect_encoding($string), 'ASCII//TRANSLIT', $string)
+        );
         // retorna a locale para a que era anterior a manipulação da string.
         setlocale(LC_CTYPE, $locale);
         return $acentosRemovidos;
@@ -102,7 +108,9 @@ class Builder
      */
     protected function getSeqConvenio($arrConvenio)
     {
-        foreach($arrConvenio as $key => $value) return $key;
+        foreach ($arrConvenio as $key => $value) {
+            return $key;
+        };
     }
 
 

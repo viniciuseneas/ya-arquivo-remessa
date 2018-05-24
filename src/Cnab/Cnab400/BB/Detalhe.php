@@ -62,7 +62,12 @@ class Detalhe
      */
     public function getIdentificacaoRegistro(): string
     {
-        return str_pad(substr($this->identificacaoRegistro,0,1),1,' ',STR_PAD_LEFT);
+        return str_pad(
+            substr($this->identificacaoRegistro, 0, 1),
+            1,
+            ' ',
+            STR_PAD_LEFT
+        );
     }
 
     /**
@@ -70,7 +75,7 @@ class Detalhe
      */
     public function setIdentificacaoRegistro(string $identificacaoRegistro)
     {
-        $this->identificacaoRegistro = substr($identificacaoRegistro,0,1);
+        $this->identificacaoRegistro = substr($identificacaoRegistro, 0, 1);
     }
 
     /**
@@ -86,7 +91,7 @@ class Detalhe
      */
     public function setNumeroPrestacao(string $numeroPrestacao)
     {
-        $this->numeroPrestacao = str_pad($numeroPrestacao,2,'0',STR_PAD_LEFT);
+        $this->numeroPrestacao = str_pad($numeroPrestacao, 2, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -102,7 +107,7 @@ class Detalhe
      */
     public function setGrupoValor(string $grupoValor)
     {
-        $this->grupoValor = str_pad($grupoValor,2,'0',STR_PAD_LEFT);
+        $this->grupoValor = str_pad($grupoValor,  2, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -118,7 +123,7 @@ class Detalhe
      */
     public function setNumBanco(string $numBanco)
     {
-        $this->numBanco = str_pad($numBanco,3,'0',STR_PAD_LEFT);
+        $this->numBanco = str_pad($numBanco, 3, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -134,7 +139,7 @@ class Detalhe
      */
     public function setPrefixoAgenciaCobradora(string $prefixoAgenciaCobradora)
     {
-        $this->prefixoAgenciaCobradora = str_pad($prefixoAgenciaCobradora,4,' ',STR_PAD_LEFT);
+        $this->prefixoAgenciaCobradora = str_pad($prefixoAgenciaCobradora, 4, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -150,7 +155,7 @@ class Detalhe
      */
     public function setPrefixoAgenciaDVCobranca(string $prefixoAgenciaDVCobranca)
     {
-        $this->prefixoAgenciaDVCobranca = str_pad($prefixoAgenciaDVCobranca,1,' ',STR_PAD_LEFT);
+        $this->prefixoAgenciaDVCobranca = str_pad($prefixoAgenciaDVCobranca, 1, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -166,7 +171,7 @@ class Detalhe
      */
     public function setComplementoRegistroBranco1(string $complementoRegistroBranco1)
     {
-        $this->complementoRegistroBranco1 = str_pad($complementoRegistroBranco1,3,' ',STR_PAD_LEFT);
+        $this->complementoRegistroBranco1 = str_pad($complementoRegistroBranco1, 3, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -182,7 +187,7 @@ class Detalhe
      */
     public function setComplementoRegistroBranco2(string $complementoRegistroBranco2)
     {
-        $this->complementoRegistroBranco2 = str_pad($complementoRegistroBranco2,3,' ',STR_PAD_LEFT);
+        $this->complementoRegistroBranco2 = str_pad($complementoRegistroBranco2, 3, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -198,7 +203,7 @@ class Detalhe
      */
     public function setComplementoRegistroBranco3(string $complementoRegistroBranco3)
     {
-        $this->complementoRegistroBranco3 = str_pad($complementoRegistroBranco3,1,' ',STR_PAD_LEFT);
+        $this->complementoRegistroBranco3 = str_pad($complementoRegistroBranco3, 1, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -214,7 +219,7 @@ class Detalhe
      */
     public function setTipoInscricaoCedente($tipoInscricaoCedente)
     {
-        $this->tipoInscricaoCedente = str_pad($tipoInscricaoCedente,2,'0',STR_PAD_LEFT);
+        $this->tipoInscricaoCedente = str_pad($tipoInscricaoCedente, 2, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -230,7 +235,7 @@ class Detalhe
      */
     public function setNumeroCPFCNPJCedente($numeroCPFCNPJCedente)
     {
-        $this->numeroCPFCNPJCedente = str_pad($numeroCPFCNPJCedente,14,'0',STR_PAD_LEFT);
+        $this->numeroCPFCNPJCedente = str_pad($numeroCPFCNPJCedente, 14, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -246,7 +251,7 @@ class Detalhe
      */
     public function setPrefixoAgencia($prefixoAgencia)
     {
-        $this->prefixoAgencia = str_pad($prefixoAgencia,4,'0',STR_PAD_LEFT);
+        $this->prefixoAgencia = str_pad($prefixoAgencia, 4,  '0', STR_PAD_LEFT);
     }
 
     /**
@@ -262,7 +267,7 @@ class Detalhe
      */
     public function setPrefixoAgenciaDV($prefixoAgenciaDV)
     {
-        $this->prefixoAgenciaDV = str_pad($prefixoAgenciaDV,1,'0',STR_PAD_LEFT);
+        $this->prefixoAgenciaDV = str_pad($prefixoAgenciaDV, 1, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -278,7 +283,7 @@ class Detalhe
      */
     public function setContaCorrenteCedente($contaCorrenteCedente)
     {
-        $this->contaCorrenteCedente = str_pad($contaCorrenteCedente,8,'0',STR_PAD_LEFT);
+        $this->contaCorrenteCedente = str_pad($contaCorrenteCedente, 8, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -294,7 +299,7 @@ class Detalhe
      */
     public function setContaCorrenteDVCedente($contaCorrenteDVCedente)
     {
-        $this->contaCorrenteDVCedente = str_pad($contaCorrenteDVCedente,1,'0',STR_PAD_LEFT);
+        $this->contaCorrenteDVCedente = str_pad($contaCorrenteDVCedente, 1, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -310,7 +315,7 @@ class Detalhe
      */
     public function setConvenioCobrancaCedente($convenioCobrancaCedente)
     {
-        $this->convenioCobrancaCedente = str_pad($convenioCobrancaCedente,7,'0',STR_PAD_LEFT);
+        $this->convenioCobrancaCedente = str_pad($convenioCobrancaCedente, 7, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -342,7 +347,7 @@ class Detalhe
      */
     public function setNossoNumero($nossoNumero)
     {
-        $this->nossoNumero = str_pad($nossoNumero,17,'0',STR_PAD_LEFT);
+        $this->nossoNumero = str_pad($nossoNumero, 17, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -358,7 +363,7 @@ class Detalhe
      */
     public function setMsgSacadorAvalista($msgSacadorAvalista)
     {
-        $this->msgSacadorAvalista = str_pad($msgSacadorAvalista,1,' ',STR_PAD_LEFT);
+        $this->msgSacadorAvalista = str_pad($msgSacadorAvalista, 1, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -374,7 +379,7 @@ class Detalhe
      */
     public function setPrefixoTitulo($prefixoTitulo)
     {
-        $this->prefixoTitulo = str_pad($prefixoTitulo,3,'0',STR_PAD_LEFT);
+        $this->prefixoTitulo = str_pad($prefixoTitulo, 3, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -390,7 +395,7 @@ class Detalhe
      */
     public function setVariacaoCarteira($variacaoCarteira)
     {
-        $this->variacaoCarteira = str_pad($variacaoCarteira,3,'0',STR_PAD_LEFT);
+        $this->variacaoCarteira = str_pad($variacaoCarteira, 3, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -406,7 +411,7 @@ class Detalhe
      */
     public function setContaCaucao($contaCaucao)
     {
-        $this->contaCaucao = str_pad($contaCaucao,1,'0',STR_PAD_LEFT);
+        $this->contaCaucao = str_pad($contaCaucao, 1, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -422,7 +427,7 @@ class Detalhe
      */
     public function setNumeroBordero($numeroBordero)
     {
-        $this->numeroBordero = str_pad($numeroBordero,6,'0',STR_PAD_LEFT);
+        $this->numeroBordero = str_pad($numeroBordero, 6, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -438,7 +443,7 @@ class Detalhe
      */
     public function setTipoCobranca($tipoCobranca)
     {
-        $this->tipoCobranca = str_pad($tipoCobranca,5,' ',STR_PAD_LEFT);
+        $this->tipoCobranca = str_pad($tipoCobranca, 5, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -454,7 +459,7 @@ class Detalhe
      */
     public function setCarteiraCobranca($carteiraCobranca)
     {
-        $this->carteiraCobranca = str_pad($carteiraCobranca,2,'0',STR_PAD_LEFT);
+        $this->carteiraCobranca = str_pad($carteiraCobranca, 2, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -470,7 +475,7 @@ class Detalhe
      */
     public function setComando($comando)
     {
-        $this->comando = str_pad($comando,2,'0',STR_PAD_LEFT);
+        $this->comando = str_pad($comando, 2, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -486,7 +491,7 @@ class Detalhe
      */
     public function setNumTituloCedente($numTituloCedente)
     {
-        $this->numTituloCedente = str_pad($numTituloCedente,10,' ',STR_PAD_LEFT);
+        $this->numTituloCedente = str_pad($numTituloCedente, 10, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -502,7 +507,7 @@ class Detalhe
      */
     public function setDtVencimento($dtVencimento)
     {
-        $this->dtVencimento = str_pad($dtVencimento,6,'0',STR_PAD_LEFT);
+        $this->dtVencimento = str_pad($dtVencimento, 6, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -518,7 +523,7 @@ class Detalhe
      */
     public function setVlTitulo($vlTitulo)
     {
-        $this->vlTitulo = str_pad($vlTitulo,13,' ',STR_PAD_LEFT);
+        $this->vlTitulo = str_pad($vlTitulo, 13, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -534,7 +539,7 @@ class Detalhe
      */
     public function setEspecieTitulo($especieTitulo)
     {
-        $this->especieTitulo = str_pad(substr($especieTitulo,0,2),2,' ',STR_PAD_LEFT);
+        $this->especieTitulo = str_pad(substr($especieTitulo, 0, 2), 2, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -550,7 +555,7 @@ class Detalhe
      */
     public function setAceiteTitulo($aceiteTitulo)
     {
-        $this->aceiteTitulo = str_pad(substr($aceiteTitulo,0,1),1,' ',STR_PAD_LEFT);
+        $this->aceiteTitulo = str_pad(substr($aceiteTitulo, 0, 1), 1, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -566,7 +571,7 @@ class Detalhe
      */
     public function setDtEmissaoTitulo($dtEmissaoTitulo)
     {
-        $this->dtEmissaoTitulo = str_pad($dtEmissaoTitulo,6,' ',STR_PAD_LEFT);
+        $this->dtEmissaoTitulo = str_pad($dtEmissaoTitulo, 6, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -582,7 +587,7 @@ class Detalhe
      */
     public function setInstrucaoCodificada1($instrucaoCodificada1)
     {
-        $this->instrucaoCodificada1 = str_pad($instrucaoCodificada1,2,' ',STR_PAD_LEFT);
+        $this->instrucaoCodificada1 = str_pad($instrucaoCodificada1, 2, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -598,7 +603,7 @@ class Detalhe
      */
     public function setInstrucaoCodificada2($instrucaoCodificada2)
     {
-        $this->instrucaoCodificada2 = str_pad($instrucaoCodificada2,2,' ',STR_PAD_LEFT);
+        $this->instrucaoCodificada2 = str_pad($instrucaoCodificada2, 2, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -614,7 +619,7 @@ class Detalhe
      */
     public function setJurisMoraDia($jurisMoraDia)
     {
-        $this->jurisMoraDia = str_pad($jurisMoraDia,13,' ',STR_PAD_LEFT);
+        $this->jurisMoraDia = str_pad($jurisMoraDia, 13, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -630,7 +635,7 @@ class Detalhe
      */
     public function setDtLimiteConcessaoDesconto($dtLimiteConcessaoDesconto)
     {
-        $this->dtLimiteConcessaoDesconto = str_pad($dtLimiteConcessaoDesconto,6,' ',STR_PAD_LEFT);
+        $this->dtLimiteConcessaoDesconto = str_pad($dtLimiteConcessaoDesconto, 6, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -646,7 +651,7 @@ class Detalhe
      */
     public function setVlDesconto($vlDesconto)
     {
-        $this->vlDesconto = str_pad($vlDesconto,13,'0',STR_PAD_LEFT);
+        $this->vlDesconto = str_pad($vlDesconto, 13, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -662,7 +667,7 @@ class Detalhe
      */
     public function setVlIOF($vlIOF)
     {
-        $this->vlIOF = str_pad($vlIOF,13,'0',STR_PAD_LEFT);
+        $this->vlIOF = str_pad($vlIOF, 13, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -678,7 +683,7 @@ class Detalhe
      */
     public function setVlAbatimento($vlAbatimento)
     {
-        $this->vlAbatimento = str_pad($vlAbatimento,13,'0',STR_PAD_LEFT);
+        $this->vlAbatimento = str_pad($vlAbatimento, 13, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -694,7 +699,7 @@ class Detalhe
      */
     public function setTipoOperacaoSacado($tipoOperacaoSacado)
     {
-        $this->tipoOperacaoSacado = str_pad($tipoOperacaoSacado,2,' ',STR_PAD_LEFT);
+        $this->tipoOperacaoSacado = str_pad($tipoOperacaoSacado, 2, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -710,7 +715,7 @@ class Detalhe
      */
     public function setCpfCnpjSacado($cpfCnpjSacado)
     {
-        $this->cpfCnpjSacado = str_pad($cpfCnpjSacado,14,' ',STR_PAD_LEFT);
+        $this->cpfCnpjSacado = str_pad($cpfCnpjSacado, 14, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -726,7 +731,7 @@ class Detalhe
      */
     public function setNomeSacado($nomeSacado)
     {
-        $this->nomeSacado = str_pad(substr($nomeSacado,0,37),37,' ',STR_PAD_LEFT);
+        $this->nomeSacado = str_pad(substr($nomeSacado, 0, 37), 37, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -742,7 +747,7 @@ class Detalhe
      */
     public function setEnderecoSacado($enderecoSacado)
     {
-        $this->enderecoSacado = str_pad(substr($enderecoSacado,0,40),40,' ',STR_PAD_LEFT);
+        $this->enderecoSacado = str_pad(substr($enderecoSacado, 0, 40), 40, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -758,7 +763,7 @@ class Detalhe
      */
     public function setBairroSacado($bairroSacado)
     {
-        $this->bairroSacado = str_pad(substr($bairroSacado,0,12),12,' ',STR_PAD_LEFT);
+        $this->bairroSacado = str_pad(substr($bairroSacado, 0, 12), 12, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -774,7 +779,7 @@ class Detalhe
      */
     public function setCepSacado($cepSacado)
     {
-        $this->cepSacado = str_pad(substr($cepSacado,0,8),8,' ',STR_PAD_LEFT);
+        $this->cepSacado = str_pad(substr($cepSacado, 0, 8), 8, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -790,7 +795,7 @@ class Detalhe
      */
     public function setCidadeSacado($cidadeSacado)
     {
-        $this->cidadeSacado = str_pad(substr($cidadeSacado,0,15),15,' ',STR_PAD_LEFT);
+        $this->cidadeSacado = str_pad(substr($cidadeSacado, 0, 15), 15, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -806,7 +811,7 @@ class Detalhe
      */
     public function setUfCidadeSacado($ufCidadeSacado)
     {
-        $this->ufCidadeSacado = str_pad(substr($ufCidadeSacado,0,2),2,' ',STR_PAD_LEFT);
+        $this->ufCidadeSacado = str_pad(substr($ufCidadeSacado, 0, 2), 2, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -822,7 +827,12 @@ class Detalhe
      */
     public function setObsMensagemSacadorAvalista($obsMensagemSacadorAvalista)
     {
-        $this->obsMensagemSacadorAvalista = str_pad(substr($obsMensagemSacadorAvalista,0,40),40,' ',STR_PAD_LEFT);
+        $this->obsMensagemSacadorAvalista = str_pad(
+            substr($obsMensagemSacadorAvalista, 0, 40),
+            40,
+            ' ',
+            STR_PAD_LEFT
+        );
     }
 
     /**
@@ -838,7 +848,7 @@ class Detalhe
      */
     public function setNumDiasProtesto($numDiasProtesto)
     {
-        $this->numDiasProtesto = str_pad($numDiasProtesto,2,' ',STR_PAD_LEFT);
+        $this->numDiasProtesto = str_pad($numDiasProtesto, 2, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -854,7 +864,7 @@ class Detalhe
      */
     public function setSequencialRegistro($sequencialRegistro)
     {
-        $this->sequencialRegistro = str_pad(substr($sequencialRegistro,0,6),6,'0',STR_PAD_LEFT);
+        $this->sequencialRegistro = str_pad(substr($sequencialRegistro, 0, 6), 6, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -916,11 +926,12 @@ class Detalhe
         ;
 
         if (mb_strlen($string) != 400) {
-            throw new \Exception("Erro ao gerar 'detalhes' da remessa, tamanho da string invalida (length: " . mb_strlen($string) . ")");
+            throw new \Exception(
+                "Erro ao gerar 'detalhes' da remessa, tamanho da string invalida (length: "
+                . mb_strlen($string) . ")"
+            );
         }
 
         return $string;
-
     }
-
 }

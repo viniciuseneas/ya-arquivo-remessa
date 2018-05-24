@@ -4,7 +4,6 @@ namespace Umbrella\Ya\RemessaBoleto\Validator;
 
 use Symfony\Component\Yaml\Yaml;
 use Umbrella\Ya\RemessaBoleto\Enum\BancoEnum;
-use \Exception;
 
 class Validator
 {
@@ -77,7 +76,7 @@ class Validator
         $this->compareArray($this->dataValidator, $data);
 
         if (count($this->emptyFields)) {
-            throw new \Exception("Faltando dados: " . print_r($this->emptyFields,1));
+            throw new \Exception("Faltando dados: " . print_r($this->emptyFields, 1));
         }
     }
 
@@ -101,5 +100,4 @@ class Validator
             }
         }
     }
-
 }

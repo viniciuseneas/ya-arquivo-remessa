@@ -2,7 +2,6 @@
 
 namespace Umbrella\Ya\RemessaBoleto\Builder;
 
-use \DateTime;
 use Umbrella\Ya\RemessaBoleto\Enum\BancoEnum;
 use Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\BB\Detalhe;
 use Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\BB\Header;
@@ -54,13 +53,14 @@ class BBCnab400Builder extends Builder
         $documentosArrecadacao  = $this->detalhesBoleto['transacoes'][$seqConvenio];
 
         $arrDetalhes = [];
-        $sequencial = 2;
 
         foreach ($documentosArrecadacao['dam'] as $key => $documento) {
             $detalhe = new Detalhe;
 
             $detalhe->setIdentificacaoRegistro(7);
-            $detalhe->setTipoInscricaoCedente(strlen($convenioBancario['orgao']['pessoa']['cpfCnpj']) > 11 ? "02" : "01");
+            $detalhe->setTipoInscricaoCedente(
+                strlen($convenioBancario['orgao']['pessoa']['cpfCnpj']) > 11 ? "02" : "01"
+            );
             $detalhe->setNumeroCPFCNPJCedente($convenioBancario['orgao']['pessoa']['cpfCnpj']);
             $detalhe->setPrefixoAgencia($convenioBancario['agencia']);
             $detalhe->setPrefixoAgenciaDV($convenioBancario['digitoAgencia']);
@@ -203,7 +203,4 @@ class BBCnab400Builder extends Builder
         fclose($file);
         return $fullpath;
     }
-
-
-
 }
