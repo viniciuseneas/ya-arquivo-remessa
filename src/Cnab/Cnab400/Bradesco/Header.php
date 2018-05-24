@@ -195,7 +195,7 @@ class Header
      */
     public function setSequencialRemessa($sequencialRemessa)
     {
-        $this->sequencialRemessa = str_pad($sequencialRemessa, 7, 0, STR_PAD_LEFT);
+        $this->sequencialRemessa = str_pad(substr($sequencialRemessa,0,7), 7, 0, STR_PAD_LEFT);
     }
 
     /**
@@ -212,5 +212,30 @@ class Header
     public function setSequencialRegistro($sequencialRegistro)
     {
         $this->sequencialRegistro = str_pad($sequencialRegistro, 6, 0, STR_PAD_LEFT);
+    }
+
+    public function getHeaderToString()
+    {
+        $headerString = $this->getIdentificacaoRegistro()
+            . $this->getIdentificacaoArquivo()
+            . $this->getLiteralRemessa()
+            . $this->getCodigoServico()
+            . str_pad($this->getLiteralServico(), 15, ' ', STR_PAD_RIGHT)
+            . $this->getCodigoEmpresa()
+            . $this->getRazaoSocial()
+            . $this->getNumeroBradesco()
+            . str_pad($this->getNomeBanco(), 15, ' ', STR_PAD_RIGHT)
+            . $this->getDataGeracao()
+            . str_pad('', 8, ' ', STR_PAD_RIGHT)
+            . $this->getIdentificacaoSistema()
+            . $this->getSequencialRemessa()
+            . str_pad('', 277, ' ', STR_PAD_RIGHT)
+            . $this->getSequencialRegistro();
+
+        if (mb_strlen($headerString) != 400) {
+            throw new \Exception("Erro ao gerar header da remessa, tamanho da string invalida (length: " . mb_strlen($headerString) . ")");
+        }
+
+        return $headerString;
     }
 }
