@@ -75,7 +75,7 @@ bb:
       conta:
       orgao:
         pessoa:
-          cpfCnpj:
+          cnpj:
         descricao:
   transacoes:
     SEQ:
