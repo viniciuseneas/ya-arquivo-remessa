@@ -133,7 +133,7 @@ class Header
             mb_substr($complementoRegistroBranco, 0, 7),
             7,
             " ",
-            STR_PAD_LEFT
+            STR_PAD_RIGHT
         );
 
         return $this;
@@ -277,7 +277,7 @@ class Header
             mb_substr($nomeCedente, 0, 30),
             30,
             ' ',
-            STR_PAD_LEFT
+            STR_PAD_RIGHT
         );
         return $this;
     }
@@ -300,7 +300,7 @@ class Header
             mb_substr($idBanco, 0, 18),
             18,
             ' ',
-            STR_PAD_LEFT
+            STR_PAD_RIGHT
         );
 
         return $this;
@@ -372,7 +372,7 @@ class Header
             mb_substr($complementoRegistroBranco2, 0, 22),
             22,
             " ",
-            STR_PAD_LEFT
+            STR_PAD_RIGHT
         );
 
         return $this;
@@ -420,7 +420,7 @@ class Header
             mb_substr($complementoRegistroBranco3, 0, 258),
             258,
             " ",
-            STR_PAD_LEFT
+            STR_PAD_RIGHT
         );
 
         return $this;
