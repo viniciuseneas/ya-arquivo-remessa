@@ -53,7 +53,6 @@ class BBCnab400Builder extends Builder
         $documentosArrecadacao  = $this->detalhesBoleto['transacoes'][$seqConvenio];
 
         $arrDetalhes = [];
-
         foreach ($documentosArrecadacao['dam'] as $key => $documento) {
             $detalhe = new Detalhe;
 
@@ -72,7 +71,10 @@ class BBCnab400Builder extends Builder
             $detalhe->setComplementoRegistroBranco1('');
             $detalhe->setMsgSacadorAvalista(' ');
             $detalhe->setPrefixoTitulo('');
-            $detalhe->setVariacaoCarteira($convenioBancario['carteira']['nome']);
+
+            /** @TODO: variação da carteira... */
+            $detalhe->setVariacaoCarteira('019');
+
             $detalhe->setContaCaucao('0');
             $detalhe->setNumeroBordero('000000');
             $detalhe->setTipoCobranca('');
@@ -144,7 +146,7 @@ class BBCnab400Builder extends Builder
         $header->setPrefixoAgenciaDV($convenioBancario['digitoAgencia']);
         $header->setContaCorrente($convenioBancario['conta']);
         $header->setContaCorrenteDV($convenioBancario['digitoConta']);
-        $header->setNumeroConvenioLider($seqConvenio);
+        $header->setNumeroConvenioLider($convenioBancario['convenio']);
 
         $header->setSequencialRegistro('1');
 
