@@ -393,7 +393,7 @@ class Header
     public function setNumeroConvenioLider($numeroConvenioLider)
     {
         $this->numeroConvenioLider = str_pad(
-            mb_substr($numeroConvenioLider, 0, 7),
+            substr($numeroConvenioLider, 0, 7),
             7,
             '0',
             STR_PAD_LEFT
