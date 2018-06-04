@@ -937,35 +937,4 @@ class Detalhe
 
         return $string;
     }
-
-    private function _showVerbose($argument, $funcName)
-    {
-        $request = Zend_Controller_Front::getInstance()->getRequest();
-        $verbose = $request->getParam('verbose');
-
-        if (isset($verbose) && !empty($argument)) {
-            $argument = is_array($argument) ? $argument[0] : $argument;
-
-            echo "(".mb_strlen($argument).")(".strlen($argument).")\t\t " . $funcName . ": ('";
-            print_r($argument);
-            echo "') \n";
-
-        } elseif (substr($funcName,0,3) === 'get') {
-            $attr = substr($funcName,3);
-            $attr = strtolower($attr[0]) . substr($attr, 1);
-
-            echo "(".mb_strlen($this->$attr) .")(".strlen($this->$attr).")\t\t " . $funcName . ": ('";
-            print_r($this->$attr);
-            echo "') \n";
-
-            if (mb_strlen($this->$attr) != strlen($this->$attr)) {
-                $converter = mb_convert_encoding($this->$attr, 'UTF8');
-                $removed   = $this->removerAcentuacao($this->$attr);
-                echo "<{$removed}><".$converter.">(" .mb_strlen($removed). "," .strlen($removed). ")\n\n\n\n\n\n\n\n";
-            }
-        }
-    }
-
-
-
 }
