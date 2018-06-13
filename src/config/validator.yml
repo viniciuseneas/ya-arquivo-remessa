@@ -73,6 +73,7 @@ bb:
       cedente:
       convenio:
       conta:
+      variacaoCarteira:
       orgao:
         pessoa:
           cnpj:
@@ -86,6 +87,8 @@ bb:
           nossoNumero:
           numeroDocumento:
           valor:
+          desconto:
+          correcaoMonetaria:
           pessoa:
             cpfCnpj:
             nome:
