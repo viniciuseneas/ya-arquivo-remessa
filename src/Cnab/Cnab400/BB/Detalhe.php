@@ -6,7 +6,6 @@ use Zend_Controller_Front;
 
 class Detalhe
 {
-
     private $identificacaoRegistro      = '7';
     private $numeroPrestacao            = '00';
     private $grupoValor                 = '00';
@@ -62,7 +61,7 @@ class Detalhe
     /**
      * @return string
      */
-    public function getIdentificacaoRegistro(): string
+    public function getIdentificacaoRegistro()
     {
         return str_pad(
             substr($this->identificacaoRegistro, 0, 1),
@@ -83,7 +82,7 @@ class Detalhe
     /**
      * @return string
      */
-    public function getNumeroPrestacao(): string
+    public function getNumeroPrestacao()
     {
         return $this->numeroPrestacao;
     }
@@ -99,7 +98,7 @@ class Detalhe
     /**
      * @return string
      */
-    public function getGrupoValor(): string
+    public function getGrupoValor()
     {
         return $this->grupoValor;
     }
@@ -115,7 +114,7 @@ class Detalhe
     /**
      * @return string
      */
-    public function getNumBanco(): string
+    public function getNumBanco()
     {
         return $this->numBanco;
     }
@@ -131,7 +130,7 @@ class Detalhe
     /**
      * @return string
      */
-    public function getPrefixoAgenciaCobradora(): string
+    public function getPrefixoAgenciaCobradora()
     {
         return $this->prefixoAgenciaCobradora;
     }
@@ -147,7 +146,7 @@ class Detalhe
     /**
      * @return string
      */
-    public function getPrefixoAgenciaDVCobranca(): string
+    public function getPrefixoAgenciaDVCobranca()
     {
         return $this->prefixoAgenciaDVCobranca;
     }
@@ -163,7 +162,7 @@ class Detalhe
     /**
      * @return string
      */
-    public function getComplementoRegistroBranco1(): string
+    public function getComplementoRegistroBranco1()
     {
         return $this->complementoRegistroBranco1;
     }
@@ -179,7 +178,7 @@ class Detalhe
     /**
      * @return string
      */
-    public function getComplementoRegistroBranco2(): string
+    public function getComplementoRegistroBranco2()
     {
         return $this->complementoRegistroBranco2;
     }
@@ -195,7 +194,7 @@ class Detalhe
     /**
      * @return string
      */
-    public function getComplementoRegistroBranco3(): string
+    public function getComplementoRegistroBranco3()
     {
         return $this->complementoRegistroBranco3;
     }

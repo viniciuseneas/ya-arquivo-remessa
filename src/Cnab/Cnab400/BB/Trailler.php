@@ -4,14 +4,13 @@ namespace Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\BB;
 
 class Trailler
 {
-
     private $identificacaoRegistro  = '9';
     private $sequencialRegistro     = '0';
 
     /**
      * @return string
      */
-    public function getSequencialRegistro(): string
+    public function getSequencialRegistro()
     {
         return $this->sequencialRegistro;
     }

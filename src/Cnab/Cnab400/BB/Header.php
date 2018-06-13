@@ -4,7 +4,6 @@ namespace Umbrella\Ya\RemessaBoleto\Cnab\Cnab400\BB;
 
 class Header
 {
-
     private $idRegistroHeader;
     private $tipoOperacao;
     private $tipoOperacaoExtenso;
@@ -285,7 +284,7 @@ class Header
     /**
      * @return string
      */
-    public function getIdBanco(): string
+    public function getIdBanco()
     {
         return $this->idBanco;
     }
@@ -294,7 +293,7 @@ class Header
      * @param string $idBanco
      * @return Header
      */
-    public function setIdBanco(string $idBanco): Header
+    public function setIdBanco(string $idBanco)
     {
         $this->idBanco = str_pad(
             mb_substr($idBanco, 0, 18),
@@ -473,7 +472,6 @@ class Header
             . $this->getComplementoRegistroBranco2()
             . $this->getNumeroConvenioLider()
             . $this->getComplementoRegistroBranco3()
-            . $this->getSequencialRegistro()
-            ;
+            . $this->getSequencialRegistro();
     }
 }

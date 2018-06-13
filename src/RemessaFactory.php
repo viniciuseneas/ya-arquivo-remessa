@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Umbrella\Ya\RemessaBoleto;
 
 use Umbrella\Ya\RemessaBoleto\Enum\BancoEnum;
@@ -12,7 +11,6 @@ use Umbrella\Ya\RemessaBoleto\Validator\Validator;
 
 class RemessaFactory
 {
-
     /**
      * Caminho da pasta onde salva o arquivo
      * @var string
@@ -43,8 +41,7 @@ class RemessaFactory
                 ->configure($bancoIdentificador, $dadosArrecadacao)
                 ->build()
                 ->createFile()
-                ->remessaFile
-            ;
+                ->remessaFile;
         } catch (\Exception $e) {
             var_dump($e);
             exit;
@@ -69,15 +66,16 @@ class RemessaFactory
             );
         }
         $this->path = rtrim($path, "/");
+
         return $this;
     }
 
     /**
      * define a classe que gera o arquivo
+     * @param int $bancoIdentificador
+     * @param array $dadosArrecadacao
+     * @return $this
      * @throws \Exception
-     * @param  int    $bancoIdentificador
-     * @param  array  $dadosArrecadacao
-     * @return RemessaFactory
      */
     private function configure(int $bancoIdentificador, array $dadosArrecadacao)
     {
@@ -103,6 +101,7 @@ class RemessaFactory
                 );
                 break;
         }
+
         return $this;
     }
 
@@ -128,12 +127,16 @@ class RemessaFactory
     private function createFile()
     {
         $this->remessaFile = $this->cnabBuilder->montarArquivo($this->path);
+
         return $this;
     }
 
     /**
      * Validar dados do boleto
-     * @return RemessaFactory
+     * @param $identificadorBanco
+     * @param $dadosArrecadacao
+     * @return $this
+     * @throws \Exception
      */
     private function validarDadosBoleto($identificadorBanco, $dadosArrecadacao)
     {

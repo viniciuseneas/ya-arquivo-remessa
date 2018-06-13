@@ -21,6 +21,7 @@ class Builder
     public function __construct(int $bancoIdentificador)
     {
         $fileValidator = dirname(__FILE__) . self::CONFIG_FILE;
+
         if (!file_exists($fileValidator)) {
             throw new \Exception("Arquivo de configuração nao localizado: {$fileValidator}");
         }
@@ -35,6 +36,7 @@ class Builder
     private function carregarDadosBoletoBanco(int $bancoIdentificador)
     {
         $fileValidator = dirname(__FILE__) . self::CONFIG_FILE;
+
         switch ($bancoIdentificador) {
             case BancoEnum::BRADESCO:
                 $this->dadosBoleto = Yaml::parseFile($fileValidator)['cnab400']['bradesco'];
@@ -63,7 +65,7 @@ class Builder
      */
     protected function concatenarDados()
     {
-        $args   = func_get_args();
+        $args = func_get_args();
         $output = '';
 
         foreach ($args as $dado) {
@@ -80,7 +82,8 @@ class Builder
     protected function parseInteger($string)
     {
         $retorno = preg_replace("/[^0-9]/", '', trim($string));
-        return (int) $retorno;
+
+        return (int)$retorno;
     }
 
     /**
@@ -114,6 +117,4 @@ class Builder
             return $key;
         };
     }
-
-
 }

@@ -17,7 +17,6 @@ class Validator
      */
     private $dataValidator;
 
-
     /**
      * @var array
      */
@@ -30,7 +29,8 @@ class Validator
     public function __construct(int $bancoIdentificador)
     {
         $fileValidator = dirname(__FILE__) . self::CONFIG_FILE;
-        if (!file_exists($fileValidator )) {
+
+        if (!file_exists($fileValidator)) {
             throw new \Exception("Arquivo de configuração nao localizado: " . $fileValidator);
         }
 
@@ -46,6 +46,7 @@ class Validator
     private function loadDataValidator(int $bancoIdentificador)
     {
         $fileValidator = dirname(__FILE__) . self::CONFIG_FILE;
+
         switch ($bancoIdentificador) {
             case BancoEnum::BRADESCO:
                 $this->dataValidator = Yaml::parseFile($fileValidator)['bradesco'];
@@ -89,7 +90,8 @@ class Validator
      */
     private function compareArray($dataValidator, $data, $emptyFields = null)
     {
-        $emptyFields = $emptyFields ?? [];
+        $emptyFields = $emptyFields ?: [];
+
         foreach (array_keys($dataValidator) as $value) {
             if (is_array($dataValidator[$value])) {
                 $controller = ($value == "SEQ") ? key($data) : $value;
