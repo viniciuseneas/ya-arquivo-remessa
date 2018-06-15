@@ -35,27 +35,29 @@ class Builder
      */
     private function carregarDadosBoletoBanco(int $bancoIdentificador)
     {
-        $fileValidator = dirname(__FILE__) . self::CONFIG_FILE;
+        $configFile = dirname(__FILE__) . self::CONFIG_FILE;
+        $fileValidator = file_get_contents($configFile);
+        $fileParsed = Yaml::parse($fileValidator);
 
         switch ($bancoIdentificador) {
             case BancoEnum::BRADESCO:
-                $this->dadosBoleto = Yaml::parseFile($fileValidator)['cnab400']['bradesco'];
+                $this->dadosBoleto = $fileParsed['cnab400']['bradesco'];
                 break;
 
             case BancoEnum::SICOOB:
-                $this->dadosBoleto = Yaml::parseFile($fileValidator)['cnab400']['sicoob'];
+                $this->dadosBoleto = $fileParsed['cnab400']['sicoob'];
                 break;
 
             case BancoEnum::BANCO_DO_BRASIL:
-                $this->dadosBoleto = Yaml::parseFile($fileValidator)['cnab400']['bb'];
+                $this->dadosBoleto = $fileParsed['cnab400']['bb'];
                 break;
 
             case BancoEnum::CEF:
-                $this->dadosBoleto = Yaml::parseFile($fileValidator)['cnab400']['cef'];
+                $this->dadosBoleto = $fileParsed['cnab400']['cef'];
                 break;
 
             default:
-                throw new \Exception("Dados de boleto do banco não localizado {$fileValidator}");
+                throw new \Exception("Dados de boleto do banco não localizado {$configFile}");
                 break;
         }
     }

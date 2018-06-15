@@ -45,26 +45,28 @@ class Validator
      */
     private function loadDataValidator(int $bancoIdentificador)
     {
-        $fileValidator = dirname(__FILE__) . self::CONFIG_FILE;
+        $configFile = dirname(__FILE__) . self::CONFIG_FILE;
+        $fileValidator = file_get_contents($configFile);
+        $fileParsed = Yaml::parse($fileValidator);
 
         switch ($bancoIdentificador) {
             case BancoEnum::BRADESCO:
-                $this->dataValidator = Yaml::parseFile($fileValidator)['bradesco'];
+                $this->dataValidator = $fileParsed['bradesco'];
                 break;
 
             case BancoEnum::SICOOB:
-                $this->dataValidator = Yaml::parseFile($fileValidator)['sicoob'];
+                $this->dataValidator = $fileParsed['sicoob'];
                 break;
 
             case BancoEnum::CEF:
-                $this->dataValidator = Yaml::parseFile($fileValidator)['cef'];
+                $this->dataValidator = $fileParsed['cef'];
                 break;
 
             case BancoEnum::BANCO_DO_BRASIL:
-                $this->dataValidator = Yaml::parseFile($fileValidator)['bb'];
+                $this->dataValidator = $fileParsed['bb'];
                 break;
             default:
-                throw new \Exception("Objeto de validação do banco não localizado " . $fileValidator);
+                throw new \Exception("Objeto de validação do banco não localizado " . $configFile);
                 break;
         }
     }
