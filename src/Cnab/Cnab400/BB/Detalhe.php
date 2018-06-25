@@ -524,7 +524,7 @@ class Detalhe
      */
     public function setVlTitulo($vlTitulo)
     {
-        $vlTitulo = str_replace($vlTitulo, '.', '');
+        $vlTitulo = str_replace('.', '', $vlTitulo);
 
         $this->vlTitulo = str_pad(substr($vlTitulo, 0, 13), 13, '0', STR_PAD_LEFT);
     }
@@ -622,7 +622,7 @@ class Detalhe
      */
     public function setJurisMoraDia($jurisMoraDia)
     {
-        $this->jurisMoraDia = str_pad($jurisMoraDia, 13, ' ', STR_PAD_LEFT);
+        $this->jurisMoraDia = str_pad($jurisMoraDia, 13, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -638,7 +638,7 @@ class Detalhe
      */
     public function setDtLimiteConcessaoDesconto($dtLimiteConcessaoDesconto)
     {
-        $this->dtLimiteConcessaoDesconto = str_pad($dtLimiteConcessaoDesconto, 6, ' ', STR_PAD_LEFT);
+        $this->dtLimiteConcessaoDesconto = str_pad($dtLimiteConcessaoDesconto, 6, '0', STR_PAD_LEFT);
     }
 
     /**

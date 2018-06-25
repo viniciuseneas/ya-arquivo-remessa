@@ -85,7 +85,7 @@ class BBCnab400Builder extends Builder
             $detalhe->setAceiteTitulo('N');
             $detalhe->setDtEmissaoTitulo((new \DateTime($documento['dataEmissao']))->format('dmy'));
             $detalhe->setInstrucaoCodificada1('00');
-            $detalhe->setInstrucaoCodificada2('');
+            $detalhe->setInstrucaoCodificada2('07');
             $detalhe->setJurisMoraDia('');
             $detalhe->setDtLimiteConcessaoDesconto('');
             $detalhe->setVlDesconto('');
