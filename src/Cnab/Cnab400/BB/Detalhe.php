@@ -622,7 +622,7 @@ class Detalhe
      */
     public function setJurisMoraDia($jurisMoraDia)
     {
-        $this->jurisMoraDia = str_pad($jurisMoraDia, 13, '0', STR_PAD_LEFT);
+        $this->jurisMoraDia = str_pad(substr($jurisMoraDia, 0, 13), 13, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -638,7 +638,7 @@ class Detalhe
      */
     public function setDtLimiteConcessaoDesconto($dtLimiteConcessaoDesconto)
     {
-        $this->dtLimiteConcessaoDesconto = str_pad($dtLimiteConcessaoDesconto, 6, '0', STR_PAD_LEFT);
+        $this->dtLimiteConcessaoDesconto = str_pad(substr($dtLimiteConcessaoDesconto, 0, 6), 6, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -654,7 +654,7 @@ class Detalhe
      */
     public function setVlDesconto($vlDesconto)
     {
-        $this->vlDesconto = str_pad($vlDesconto, 13, '0', STR_PAD_LEFT);
+        $this->vlDesconto = str_pad(substr($vlDesconto, 0, 13), 13, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -670,7 +670,7 @@ class Detalhe
      */
     public function setVlIOF($vlIOF)
     {
-        $this->vlIOF = str_pad($vlIOF, 13, '0', STR_PAD_LEFT);
+        $this->vlIOF = str_pad(substr($vlIOF, 0, 13), 13, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -686,7 +686,7 @@ class Detalhe
      */
     public function setVlAbatimento($vlAbatimento)
     {
-        $this->vlAbatimento = str_pad($vlAbatimento, 13, '0', STR_PAD_LEFT);
+        $this->vlAbatimento = str_pad(substr($vlAbatimento, 0, 13), 13, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -702,7 +702,7 @@ class Detalhe
      */
     public function setTipoOperacaoSacado($tipoOperacaoSacado)
     {
-        $this->tipoOperacaoSacado = str_pad($tipoOperacaoSacado, 2, ' ', STR_PAD_LEFT);
+        $this->tipoOperacaoSacado = str_pad(substr($tipoOperacaoSacado, 0, 2), 2, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -718,7 +718,8 @@ class Detalhe
      */
     public function setCpfCnpjSacado($cpfCnpjSacado)
     {
-        $this->cpfCnpjSacado = str_pad($cpfCnpjSacado, 14, ' ', STR_PAD_LEFT);
+        $cpfCnpjSacado = preg_replace('/\D/', '', $cpfCnpjSacado);
+        $this->cpfCnpjSacado = str_pad(substr($cpfCnpjSacado, 0, 14), 14, ' ', STR_PAD_LEFT);
     }
 
     /**
@@ -851,7 +852,7 @@ class Detalhe
      */
     public function setNumDiasProtesto($numDiasProtesto)
     {
-        $this->numDiasProtesto = str_pad($numDiasProtesto, 2, ' ', STR_PAD_LEFT);
+        $this->numDiasProtesto = str_pad(substr($numDiasProtesto, 0, 2), 2, ' ', STR_PAD_LEFT);
     }
 
     /**
