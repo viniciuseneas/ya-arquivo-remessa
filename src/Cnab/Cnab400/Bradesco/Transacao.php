@@ -830,7 +830,12 @@ class Transacao
      */
     public function setNomePagador($nomePagador)
     {
-        $this->nomePagador = str_pad(mb_strtoupper($nomePagador), 40, ' ', STR_PAD_RIGHT);
+        $this->nomePagador = str_pad(
+            substr($nomePagador, 0, 40),
+            40,
+            ' ',
+            STR_PAD_RIGHT
+        );
     }
 
     /**
@@ -846,7 +851,12 @@ class Transacao
      */
     public function setEnderecoPagador($enderecoPagador)
     {
-        $this->enderecoPagador = str_pad(mb_strtoupper($enderecoPagador), 40, ' ', STR_PAD_RIGHT);
+        $this->enderecoPagador = str_pad(
+            substr($enderecoPagador, 0, 40),
+            40,
+            ' ',
+            STR_PAD_RIGHT
+        );
     }
 
     /**
@@ -945,6 +955,10 @@ class Transacao
         $this->sequencialRegistro = str_pad($sequencialRegistro, 6, 0, STR_PAD_LEFT);
     }
 
+    /**
+     * @return string
+     * @throws \Exception
+     */
     public function getTransacaoToString()
     {
         $stringTransacao = $this->getIdentificacaoRegistro()
