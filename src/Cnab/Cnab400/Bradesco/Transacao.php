@@ -831,7 +831,7 @@ class Transacao
     public function setNomePagador($nomePagador)
     {
         $this->nomePagador = str_pad(
-            substr($nomePagador, 0, 40),
+            mb_strtoupper(mb_substr($nomePagador, 0, 40)),
             40,
             ' ',
             STR_PAD_RIGHT
@@ -852,7 +852,7 @@ class Transacao
     public function setEnderecoPagador($enderecoPagador)
     {
         $this->enderecoPagador = str_pad(
-            substr($enderecoPagador, 0, 40),
+            mb_strtoupper(mb_substr($enderecoPagador, 0, 40)),
             40,
             ' ',
             STR_PAD_RIGHT
@@ -1004,9 +1004,8 @@ class Transacao
             . $this->getPrimeiraMensagem()
             . $this->getCep()
             . $this->getSufixoCep()
-            . ($this->getSacador() ? : $this->getSegundaMensagem())
-            . $this->getSequencialRegistro()
-        ;
+            . ($this->getSacador() ?: $this->getSegundaMensagem())
+            . $this->getSequencialRegistro();
 
         if (mb_strlen($stringTransacao) != 400) {
             throw new \Exception(
